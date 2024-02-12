@@ -8,7 +8,9 @@ export default function SignUp() {
   return (
     <>
       <div className="py-4 bg-secondary shadow-xl">
-        <Navbar />
+        <div className="my-4">
+          <Navbar />
+        </div>
       </div>
       <TagLineStrip className="shadow-xl" />
       <div className="container py-8 text-center mx-auto px-8">

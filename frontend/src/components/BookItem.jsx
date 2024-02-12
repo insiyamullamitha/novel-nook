@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useBasket } from "../components/BasketContext";
 import BasketIcon from "../icons/BasketIcon";
 import TickIcon from "../icons/TickIcon";
 
-export default function BookItem({ bookGenre, updateBasketCount }) {
+export default function BookItem({ bookTitle }) {
   const [quantity, setQuantity] = useState(1);
   const [addedToBasket, setAddedToBasket] = useState(false);
+  const { state, addToBasket } = useBasket();
+  console.log(state);
+  console.log(addToBasket);
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -18,7 +22,7 @@ export default function BookItem({ bookGenre, updateBasketCount }) {
 
   const handleAddToBasket = () => {
     setAddedToBasket(true);
-    updateBasketCount(quantity);
+    addToBasket({ type: "ADD_TO_BASKET", payload: { bookTitle, quantity } });
 
     setTimeout(() => {
       setAddedToBasket(false);
@@ -29,10 +33,10 @@ export default function BookItem({ bookGenre, updateBasketCount }) {
   return (
     <div className="bg-transparent border-2 border-black p-4 rounded-lg text-center hover:shadow-md hover:shadow-black/25 over:bg-white transition-all">
       <div className="text-center">
-        <p className="tagline-font uppercase text-4xl">{bookGenre}</p>
+        <p className="tagline-font uppercase text-4xl">{bookTitle}</p>
         <img
           className={"max-h-auto max-h-24 block mx-auto mt-4"}
-          src={"/" + bookGenre + ".png"}
+          src={"/" + bookTitle + ".png"}
           alt="book"
         />
       </div>
