@@ -1,1 +1,10 @@
-venv
+# Dependency directories
+/node_modules
+/venv
+
+# Build artifacts
+/dist
+/out
+
+# Configuration files with sensitive information
+.env
