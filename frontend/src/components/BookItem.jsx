@@ -20,7 +20,6 @@ export default function BookItem({ bookTitle }) {
 
   const handleAddToBasket = () => {
     setAddedToBasket(true);
-    console.log("Adding to basket", bookTitle, quantity);
     addToBasket({ bookTitle, quantity });
 
     setTimeout(() => {
@@ -30,7 +29,7 @@ export default function BookItem({ bookTitle }) {
   };
 
   return (
-    <div className="bg-transparent border-2 border-black p-4 rounded-lg text-center hover:shadow-md hover:shadow-black/25 over:bg-white transition-all">
+    <div className="bg-transparent border-2 border-black p-4 rounded-lg text-center hover:shadow-md hover:bg-darkerprimary hover:shadow-black/25 over:bg-white transition-all">
       <div className="text-center">
         <p className="tagline-font uppercase text-4xl">{bookTitle}</p>
         <img
@@ -41,21 +40,25 @@ export default function BookItem({ bookTitle }) {
       </div>
       <div className="flex items-center justify-center mt-4">
         <div className="flex bg-white items-center rounded-full">
-          <button
-            className="text-black uppercase text-sm font-semibold rounded-l-full px-3 py-1 hover:font-bold hover:text-red-500 transition-all"
-            onClick={decreaseQuantity}
-          >
-            -
-          </button>
+          {!addedToBasket && (
+            <button
+              className="text-black uppercase text-sm font-semibold rounded-l-full px-3 py-1 hover:font-bold hover:text-red-500 transition-all"
+              onClick={decreaseQuantity}
+            >
+              -
+            </button>
+          )}
           <span className="text-black uppercase text-sm font-semibold px-3 py-1">
             {quantity}
           </span>
-          <button
-            className="text-black uppercase text-sm font-semibold rounded-r-full px-3 py-1 hover:font-bold hover:text-green-500 transition-all"
-            onClick={increaseQuantity}
-          >
-            +
-          </button>
+          {!addedToBasket && (
+            <button
+              className="text-black uppercase text-sm font-semibold rounded-r-full px-3 py-1 hover:font-bold hover:text-green-500 transition-all"
+              onClick={increaseQuantity}
+            >
+              +
+            </button>
+          )}
         </div>
       </div>
       <button

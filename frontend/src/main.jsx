@@ -1,11 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 import { BasketProvider } from "./components/BasketContext";
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+
+root.render(
   <BasketProvider>
     <App />
-  </BasketProvider>,
-  document.getElementById("root")
+  </BasketProvider>
 );

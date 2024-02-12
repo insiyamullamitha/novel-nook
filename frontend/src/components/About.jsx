@@ -30,7 +30,7 @@ export default function About() {
         </div>
         <Link to="/books">
           <button
-            className="bg-accent1 mt-2 flex gap-2 text-black uppercase text-sm font-bold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
+            className="bg-accent1 mt-2 flex gap-2 text-black uppercase font-bold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
             style={{ whiteSpace: "nowrap", overflow: "hidden" }}
           >
             Find Your Next Read
