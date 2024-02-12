@@ -6,9 +6,7 @@ import TickIcon from "../icons/TickIcon";
 export default function BookItem({ bookTitle }) {
   const [quantity, setQuantity] = useState(1);
   const [addedToBasket, setAddedToBasket] = useState(false);
-  const { state, addToBasket } = useBasket();
-  console.log(state);
-  console.log(addToBasket);
+  const { addToBasket } = useBasket();
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -22,7 +20,7 @@ export default function BookItem({ bookTitle }) {
 
   const handleAddToBasket = () => {
     setAddedToBasket(true);
-    addToBasket({ type: "ADD_TO_BASKET", payload: { bookTitle, quantity } });
+    addToBasket({ bookTitle });
 
     setTimeout(() => {
       setAddedToBasket(false);

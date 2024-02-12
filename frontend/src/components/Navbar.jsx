@@ -66,7 +66,7 @@ export default function Navbar({ basketCount }) {
           <Link to="/basket" className="text-black">
             <BasketIcon />
             {basketCount > 0 && (
-              <div className="absolute -top-2 -right-2 bg-red-500 rounded-full p-1 w-4 h-4 flex items-center justify-center text-xs text-white">
+              <div className="absolute -top-2 -right-2 bg-accent1 rounded-full p-1 w-4 h-4 flex items-center justify-center text-xs text-white">
                 {basketCount}
               </div>
             )}
