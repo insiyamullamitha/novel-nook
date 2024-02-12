@@ -20,7 +20,8 @@ export default function BookItem({ bookTitle }) {
 
   const handleAddToBasket = () => {
     setAddedToBasket(true);
-    addToBasket({ bookTitle });
+    console.log("Adding to basket", bookTitle, quantity);
+    addToBasket({ bookTitle, quantity });
 
     setTimeout(() => {
       setAddedToBasket(false);

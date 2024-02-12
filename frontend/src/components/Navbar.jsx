@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import BasketIcon from "../icons/BasketIcon";
-import { useBasket } from "./BasketContext";
+import { useBasket, calculateBasketCount } from "./BasketContext";
 
-export default function Navbar({ basketCount }) {
+export default function Navbar() {
   const location = useLocation();
   const { state } = useBasket();
-  basketCount = state.items.length;
+  const basketCount = calculateBasketCount(state.items);
 
   const isActive = (path) => {
     return location.pathname === path ? "font-bold" : "";

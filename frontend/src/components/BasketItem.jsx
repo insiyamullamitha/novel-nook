@@ -1,4 +1,4 @@
-export default function BasketItem({ bookTitle }) {
+export default function BasketItem({ bookTitle, quantity }) {
   return (
     <div className="my-4 bg-white shadow-xl rounded-lg p-4">
       <div className="flex justify-between">
@@ -10,8 +10,8 @@ export default function BasketItem({ bookTitle }) {
         <p className="text-gray-500">£8.99</p>
       </div>
       <div className="flex justify-between">
-        <p className="text-gray-500">Quantity</p>
-        <p className="text-gray-500">1</p>
+        <p className="text-gray-500">Quantity: </p>
+        <p className="text-gray-500">{quantity}</p>
       </div>
     </div>
   );

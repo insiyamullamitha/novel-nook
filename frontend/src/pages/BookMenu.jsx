@@ -16,9 +16,6 @@ export default function BookMenu() {
         <BookItem bookTitle={"fantasy"} />
         <BookItem bookTitle={"romance"} />
         <BookItem bookTitle={"mystery"} />
-        <BookItem bookTitle={"fantasy"} />
-        <BookItem bookTitle={"romance"} />
-        <BookItem bookTitle={"mystery"} />
       </div>
       <Footer />
     </>

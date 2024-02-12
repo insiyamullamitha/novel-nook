@@ -1,25 +1,30 @@
 import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
-import { useBasket } from "../components/BasketContext";
+import { useBasket, calculateBasketCount } from "../components/BasketContext";
 import { useState, useEffect } from "react";
 import BasketItem from "../components/BasketItem";
 
 export default function Basket() {
   const { state } = useBasket();
-  console.log(state);
   const emptyBasket = state.items.length === 0;
   const [basketItems, setBasketItems] = useState([]);
+  const [price, setPrice] = useState("£0.00");
+  const basketCount = calculateBasketCount(state.items);
 
   useEffect(() => {
     if (!emptyBasket) {
       // Use map to create an array of BasketItem components
       const itemsArray = state.items.map((item, index) => (
-        <BasketItem key={index} bookTitle={item.bookTitle} />
+        <BasketItem
+          key={index}
+          bookTitle={item.bookTitle}
+          quantity={item.quantity}
+        />
       ));
 
-      // Set the state once after the loop is completed
       setBasketItems(itemsArray);
     }
+    setPrice(`£${(basketCount * 8.99).toFixed(2)}`);
   }, [state.items, emptyBasket]);
 
   return (
@@ -41,7 +46,7 @@ export default function Basket() {
         </div>
         <div>
           <h1 className="text-4xl text-accent1 font-bold">Total</h1>
-          <p className="text-2xl mt-4">£{7.99 * state.items.length}</p>
+          <p className="text-2xl mt-4">{price}</p>
         </div>
       </div>
     </>
