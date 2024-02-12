@@ -1,0 +1,39 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&family=Zilla+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+.tagline-font {
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+}
+
+.logo-font {
+  font-family: "Pacifico", cursive;
+  font-weight: 200;
+}
+
+.nav-font {
+  font-family: "Zilla Slab", serif;
+  font-weight: 500;
+}
+
+* {
+  background-color: "#FCEDC6";
+}
+
+.flip-container {
+  perspective: 1000px;
+  position: relative;
+  width: 100%;
+}
+
+.flipper {
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.flipped .flipper {
+  transform: rotateY(180deg);
+}
