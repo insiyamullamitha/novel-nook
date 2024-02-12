@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
 import Right from "../icons/Right";
+import { Link } from "react-scroll";
 
 export default function Hero() {
   return (
@@ -16,13 +17,15 @@ export default function Hero() {
             <p className="nav-font uppercase text-black px-8 text-xl">
               Curated Tales for Every Mood
             </p>
-            <button
-              className="flex gap-2 py-2 bg-accent1 text-black font-semibold uppercase px-3 py-2 rounded-full "
-              style={{ whiteSpace: "nowrap", overflow: "hidden" }}
-            >
-              Learn More
-              <Right />
-            </button>
+            <Link to="aboutSection" smooth={true} duration={500}>
+              <button
+                className="flex gap-2 py-2 bg-accent1 text-black font-bold uppercase px-3 py-2 rounded-full "
+                style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+              >
+                Learn More
+                <Right />
+              </button>
+            </Link>
           </div>
         </div>
       </div>

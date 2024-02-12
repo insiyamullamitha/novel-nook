@@ -11,7 +11,7 @@ export default function Navbar() {
           <li>
             <Link
               to="/"
-              className="tracking-wide nav-font text-black uppercase"
+              className="tracking-wide nav-font text-black uppercase hover:font-bold"
             >
               Home
             </Link>
@@ -19,7 +19,7 @@ export default function Navbar() {
           <li>
             <Link
               to="/books"
-              className="tracking-wide nav-font text-black uppercase"
+              className="tracking-wide nav-font text-black uppercase hover:font-bold"
             >
               Books
             </Link>
@@ -27,7 +27,7 @@ export default function Navbar() {
           <li>
             <Link
               to="/login"
-              className="tracking-wide nav-font text-black uppercase"
+              className="tracking-wide nav-font text-black uppercase hover:font-bold"
             >
               Log In
             </Link>
@@ -35,7 +35,7 @@ export default function Navbar() {
           <li>
             <Link
               to="/signup"
-              className="tracking-wide nav-font text-black uppercase"
+              className="tracking-wide nav-font text-black uppercase hover:font-bold"
             >
               Sign Up
             </Link>

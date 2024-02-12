@@ -3,10 +3,12 @@ import Right from "../icons/Right";
 
 export default function About() {
   return (
-    <section className="my-8">
+    <section className="my-16" id="aboutSection">
       <div className="container mx-auto max-w-screen-lg px-8 text-center">
         <div className="tagline-font">
-          <h2 className="text-4xl font-bold mb-8 text-secondary">About Us</h2>
+          <h2 className="text-4xl font-bold mb-8 uppercase text-secondary">
+            About Us
+          </h2>
           <p className="text-lg mb-6">
             Welcome to Novel Nook, your go-to destination for a delightful
             literary journey. We are passionate about connecting readers with
