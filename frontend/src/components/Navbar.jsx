@@ -1,10 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BasketIcon from "../icons/BasketIcon";
 
 export default function Navbar({ basketCount }) {
+  const location = useLocation();
   if (basketCount === undefined) {
     basketCount = 0;
   }
+
+  const isActive = (path) => {
+    return location.pathname === path ? "font-bold" : "";
+  };
+
   return (
     <nav
       className="bg-primary px-8 container mx-auto max-w-full-lg bg-gray-800 p-2 rounded-full flex-wrap sm:flex-no-wrap"
@@ -18,7 +24,9 @@ export default function Navbar({ basketCount }) {
           <li>
             <Link
               to="/"
-              className="tracking-wide nav-font text-black uppercase hover:font-bold"
+              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                "/"
+              )}`}
             >
               Home
             </Link>
@@ -26,7 +34,9 @@ export default function Navbar({ basketCount }) {
           <li>
             <Link
               to="/books"
-              className="tracking-wide nav-font text-black uppercase hover:font-bold"
+              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                "/books"
+              )}`}
             >
               Books
             </Link>
@@ -34,7 +44,9 @@ export default function Navbar({ basketCount }) {
           <li>
             <Link
               to="/login"
-              className="tracking-wide nav-font text-black uppercase hover:font-bold"
+              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                "/login"
+              )}`}
             >
               Log In
             </Link>
@@ -42,7 +54,9 @@ export default function Navbar({ basketCount }) {
           <li>
             <Link
               to="/signup"
-              className="tracking-wide nav-font text-black uppercase hover:font-bold"
+              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                "/signup"
+              )}`}
             >
               Sign Up
             </Link>
