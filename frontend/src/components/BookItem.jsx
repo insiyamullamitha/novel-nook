@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import BasketIcon from "../icons/BasketIcon";
+import TickIcon from "../icons/TickIcon";
 
-export default function BookItem({ bookGenre }) {
+export default function BookItem({ bookGenre, updateBasketCount }) {
   const [quantity, setQuantity] = useState(1);
   const [addedToBasket, setAddedToBasket] = useState(false);
 
@@ -17,6 +18,12 @@ export default function BookItem({ bookGenre }) {
 
   const handleAddToBasket = () => {
     setAddedToBasket(true);
+    updateBasketCount(quantity);
+
+    setTimeout(() => {
+      setAddedToBasket(false);
+      setQuantity(1);
+    }, 3000);
   };
 
   return (
@@ -24,7 +31,7 @@ export default function BookItem({ bookGenre }) {
       <div className="text-center">
         <p className="tagline-font uppercase text-4xl">{bookGenre}</p>
         <img
-          className="max-h-auto max-h-24 block mx-auto mt-4"
+          className={"max-h-auto max-h-24 block mx-auto mt-4"}
           src={"/" + bookGenre + ".png"}
           alt="book"
         />
@@ -51,11 +58,21 @@ export default function BookItem({ bookGenre }) {
       <button
         className={`bg-black mt-4 mb-4 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide hover:font-bold ${
           addedToBasket ? "text-green-500" : ""
-        }`}
+        } `}
         style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+        onClick={handleAddToBasket}
       >
-        {addedToBasket ? "Added" : "Add To Basket"}
-        <BasketIcon />
+        {addedToBasket ? (
+          <>
+            <span>Added</span>
+            <TickIcon className={`spin`} />{" "}
+          </>
+        ) : (
+          <>
+            <span>Add To Basket</span>
+            <BasketIcon />
+          </>
+        )}
       </button>
     </div>
   );

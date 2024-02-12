@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Right from "../icons/Right";
 
 export default function HomeBookItem({ bookGenre }) {
@@ -11,13 +12,15 @@ export default function HomeBookItem({ bookGenre }) {
           alt="book"
         />
       </div>
-      <button
-        className="bg-black my-6 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
-        style={{ whiteSpace: "nowrap", overflow: "hidden" }}
-      >
-        Shop Now
-        <Right />
-      </button>
+      <Link to="/books">
+        <button
+          className="bg-black my-6 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
+          style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+        >
+          Shop Now
+          <Right />
+        </button>
+      </Link>
     </div>
   );
 }
