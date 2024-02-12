@@ -1,7 +1,13 @@
+import Navbar from "../components/Navbar";
+import TagLineStrip from "../components/TagLineStrip";
+
 export default function Basket() {
   return (
-    <div className="bg-primary">
-      <h1 className="text-secondary text-4xl">Basket</h1>
-    </div>
+    <>
+      <div className="py-4 bg-secondary shadow-xl">
+        <Navbar />
+      </div>
+      <TagLineStrip className="shadow-xl" />
+    </>
   );
 }

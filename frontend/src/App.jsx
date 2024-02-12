@@ -1,11 +1,9 @@
 import "./App.css";
 import Home from "./pages/Home";
-import BooksMenu from "./pages/BooksMenu";
+import BookMenu from "./pages/BookMenu";
 import Basket from "./pages/Basket";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -14,7 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/books" element={<BooksMenu />} />
+          <Route path="/books" element={<BookMenu />} />
           <Route path="/basket" element={<Basket />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />

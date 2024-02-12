@@ -13,13 +13,13 @@ export default function Hero() {
             Find Joy <br />
             in Every Chapter!
           </div>
-          <div className="flex items-center">
-            <p className="nav-font uppercase text-black px-8 text-xl">
+          <div className="flex flex-col px-8 md:flex-row md:items-center">
+            <p className="nav-font uppercase text-black md:mr-8 md:text-xl">
               Curated Tales for Every Mood
             </p>
             <Link to="aboutSection" smooth={true} duration={500}>
               <button
-                className="flex gap-2 py-2 bg-accent1 text-black font-bold uppercase px-3 py-2 rounded-full "
+                className="flex gap-2 py-2 bg-accent1 text-black font-bold uppercase px-3 py-2 rounded-full mt-4 md:mt-0"
                 style={{ whiteSpace: "nowrap", overflow: "hidden" }}
               >
                 Learn More

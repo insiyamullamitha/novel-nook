@@ -1,5 +1,6 @@
 import React from "react";
 import Right from "../icons/Right";
+import { Link } from "react-router-dom";
 
 export default function About() {
   return (
@@ -27,13 +28,15 @@ export default function About() {
             trusted companion on your reading adventures.
           </p>
         </div>
-        <button
-          className="bg-accent1 mt-2 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
-          style={{ whiteSpace: "nowrap", overflow: "hidden" }}
-        >
-          Find Your Next Read
-          <Right />
-        </button>
+        <Link to="/books">
+          <button
+            className="bg-accent1 mt-2 flex gap-2 text-black uppercase text-sm font-bold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
+            style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+          >
+            Find Your Next Read
+            <Right />
+          </button>
+        </Link>
       </div>
     </section>
   );
