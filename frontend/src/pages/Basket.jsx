@@ -24,11 +24,11 @@ export default function Basket() {
       setBasketItems(itemsArray);
     }
     setPrice(`£${(basketCount * 8.99).toFixed(2)}`);
-  }, [state.items, emptyBasket]);
+  }, [state.items, emptyBasket, basketCount]);
 
   return (
     <>
-      <div className="py-4 bg-secondary shadow-xl">
+      <div className="tagline-font py-4 bg-secondary shadow-xl">
         <div className="my-4">
           <Navbar />
         </div>
@@ -36,7 +36,9 @@ export default function Basket() {
       <TagLineStrip className="shadow-xl" />
       <div className="container mx-auto text-black px-8 mt-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-12">
         <div>
-          <h1 className="text-4xl font-bold text-accent1">Basket</h1>
+          <h1 className="text-4xl tagline-font font-bold text-accent1">
+            Basket
+          </h1>
           {emptyBasket ? (
             <p className="text-xl mt-4">There are no items in your basket.</p>
           ) : (
@@ -44,8 +46,10 @@ export default function Basket() {
           )}
         </div>
         <div>
-          <h1 className="text-4xl text-accent1 font-bold">Total</h1>
-          <p className="text-2xl mt-4">{price}</p>
+          <h1 className="text-4xl tagline-font text-accent1 font-bold">
+            Total
+          </h1>
+          <p className="text-2xl tagline-font mt-4">{price}</p>
         </div>
       </div>
     </>

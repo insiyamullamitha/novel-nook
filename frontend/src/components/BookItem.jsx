@@ -9,7 +9,9 @@ export default function BookItem({ bookTitle }) {
   const { addToBasket } = useBasket();
 
   const increaseQuantity = () => {
-    setQuantity(quantity + 1);
+    if (quantity < 20) {
+      setQuantity(quantity + 1);
+    }
   };
 
   const decreaseQuantity = () => {
