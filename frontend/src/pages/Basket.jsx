@@ -13,7 +13,6 @@ export default function Basket() {
 
   useEffect(() => {
     if (!emptyBasket) {
-      // Use map to create an array of BasketItem components
       const itemsArray = state.items.map((item, index) => (
         <BasketItem
           key={index}
@@ -35,11 +34,11 @@ export default function Basket() {
         </div>
       </div>
       <TagLineStrip className="shadow-xl" />
-      <div className="container mx-auto px-8 mt-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-12">
+      <div className="container mx-auto text-black px-8 mt-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-12">
         <div>
           <h1 className="text-4xl font-bold text-accent1">Basket</h1>
           {emptyBasket ? (
-            <p>There are no items in your basket.</p>
+            <p className="text-xl mt-4">There are no items in your basket.</p>
           ) : (
             <div>{basketItems}</div>
           )}

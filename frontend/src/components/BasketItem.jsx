@@ -10,7 +10,7 @@ export default function BasketItem({ bookTitle, quantity }) {
           alt={`${bookTitle} cover`}
         />
         <div>
-          <h3 className="text-xl text-black font-semibold">{bookTitle}</h3>
+          <h3 className="text-xl text-black capitalize">{bookTitle}</h3>
           <p className="text-gray-500">Price: £8.99</p>
         </div>
       </div>
@@ -18,7 +18,7 @@ export default function BasketItem({ bookTitle, quantity }) {
         <p className="text-gray-500">Quantity: </p>
         <form>
           <select
-            className="bg-white border-2 border-gray-200 text-black font-semibold"
+            className="bg-white border-2 border-gray-300 text-black font-semibold"
             value={quantity}
             readOnly
           >

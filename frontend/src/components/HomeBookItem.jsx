@@ -3,7 +3,7 @@ import Right from "../icons/Right";
 
 export default function HomeBookItem({ bookGenre }) {
   return (
-    <div className="bg-transparent border-2 border-black p-4 rounded-lg text-center hover:bg-darkerprimary hover:shadow-md hover:shadow-black/25 over:bg-white transition-all">
+    <div className="bg-transparent text-black border-2 border-black p-4 rounded-lg text-center hover:bg-darkerprimary hover:shadow-md hover:shadow-black/25 over:bg-white transition-all">
       <div className="text-center">
         <p className="tagline-font uppercase text-4xl">{bookGenre}</p>
         <img

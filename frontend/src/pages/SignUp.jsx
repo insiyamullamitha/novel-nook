@@ -26,17 +26,17 @@ export default function SignUp() {
             <input
               type="text"
               placeholder="Full Name"
-              className="border-2 border-black rounded-lg p-3"
+              className="border-2 border-black bg-white rounded-lg p-3"
             />
             <input
               type="email"
               placeholder="Email"
-              className="border-2 border-black rounded-lg p-3"
+              className="border-2 border-black bg-white rounded-lg p-3"
             />
             <input
               type="password"
               placeholder="Password"
-              className="border-2 border-black rounded-lg p-3"
+              className="border-2 border-black bg-white rounded-lg p-3"
             />
             <button
               type="submit"

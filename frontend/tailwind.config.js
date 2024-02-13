@@ -8,10 +8,13 @@ export default {
         darkerprimary: "#e2d5b2",
         secondary: "#99A660",
         accent1: "#CD6153",
-        accent2: "#CB9C4B",
+        accent2: "#b48534",
       },
     },
   },
   variants: {},
   plugins: [require("daisyui")],
+  daisyui: {
+    base: false,
+  },
 };

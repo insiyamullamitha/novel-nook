@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <section className="my-16" id="aboutSection">
+    <section className="mt-16 mb-12" id="aboutSection">
       <div className="container mx-auto max-w-screen-lg px-8 text-center">
         <div className="tagline-font">
           <h2 className="text-4xl font-bold mb-8 uppercase text-secondary">
@@ -30,7 +30,7 @@ export default function About() {
         </div>
         <Link to="/books">
           <button
-            className="bg-accent2 mt-2 flex gap-2 text-black uppercase font-bold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
+            className="bg-accent1 mt-2 flex gap-2 text-black uppercase font-bold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
             style={{ whiteSpace: "nowrap", overflow: "hidden" }}
           >
             Find Your Next Read
