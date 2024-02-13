@@ -27,6 +27,12 @@ export default function FAQs() {
             "It usually takes about 3-5 days from dispatch. Please wait 10 working days before contacting us if you haven't received your items as there can be delays from the post office."
           }
         />
+        <FAQItem
+          question={"How can I return an item?"}
+          information={
+            "We accept returns within 14 days of delivery. Please contact us to arrange a return."
+          }
+        />
       </div>
     </>
   );

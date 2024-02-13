@@ -23,7 +23,9 @@ export default function BasketItem({ bookTitle, quantity }) {
           alt={`${bookTitle} cover`}
         />
         <div>
-          <h3 className="text-xl text-black capitalize">{bookTitle}</h3>
+          <h3 className="text-m text-black capitalize">
+            {bookTitle.replace(/_/g, " ")}
+          </h3>
           <p className="text-gray-500">Price: £8.99</p>
         </div>
       </div>

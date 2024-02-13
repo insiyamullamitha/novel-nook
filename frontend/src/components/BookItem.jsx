@@ -33,7 +33,9 @@ export default function BookItem({ bookTitle }) {
   return (
     <div className="bg-transparent text-black border-2 border-black p-4 rounded-lg text-center hover:shadow-md hover:bg-darkerprimary hover:shadow-black/25 over:bg-white transition-all">
       <div className="text-center">
-        <p className="tagline-font uppercase text-4xl">{bookTitle}</p>
+        <p className="tagline-font font-bold capitalize text-m">
+          {bookTitle.replace(/_/g, " ")}
+        </p>
         <img
           className={"max-h-auto max-h-24 block mx-auto mt-4"}
           src={"/" + bookTitle + ".png"}

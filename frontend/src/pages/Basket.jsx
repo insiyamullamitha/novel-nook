@@ -3,6 +3,7 @@ import TagLineStrip from "../components/TagLineStrip";
 import { useBasket, calculateBasketCount } from "../components/BasketContext";
 import { useState, useEffect } from "react";
 import BasketItem from "../components/BasketItem";
+import Footer from "../components/Footer";
 
 export default function Basket() {
   const { state } = useBasket();
@@ -49,9 +50,10 @@ export default function Basket() {
           <h1 className="text-4xl tagline-font text-accent1 font-bold">
             Total
           </h1>
-          <p className="text-2xl tagline-font mt-4">{price}</p>
+          <p className="text-xl tagline-font mt-4">{price}</p>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
