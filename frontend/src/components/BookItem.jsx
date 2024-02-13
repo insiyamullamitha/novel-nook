@@ -40,25 +40,25 @@ export default function BookItem({ bookTitle }) {
       </div>
       <div className="flex items-center justify-center mt-4">
         <div className="flex bg-white items-center rounded-full">
-          {!addedToBasket && (
-            <button
-              className="text-black uppercase text-sm font-semibold rounded-l-full px-3 py-1 hover:font-bold hover:text-red-500 transition-all"
-              onClick={decreaseQuantity}
-            >
-              -
-            </button>
-          )}
+          <button
+            className={`text-black uppercase text-sm font-semibold rounded-l-full px-3 py-1 hover:font-bold hover:text-red-500 transition-all ${
+              addedToBasket ? "text-white" : ""
+            }`}
+            onClick={decreaseQuantity}
+          >
+            -
+          </button>
           <span className="text-black uppercase text-sm font-semibold px-3 py-1">
             {quantity}
           </span>
-          {!addedToBasket && (
-            <button
-              className="text-black uppercase text-sm font-semibold rounded-r-full px-3 py-1 hover:font-bold hover:text-green-500 transition-all"
-              onClick={increaseQuantity}
-            >
-              +
-            </button>
-          )}
+          <button
+            className={`text-black uppercase text-sm font-semibold rounded-r-full px-3 py-1 hover:font-bold hover:text-green-500 transition-all ${
+              addedToBasket ? "text-white" : ""
+            }`}
+            onClick={increaseQuantity}
+          >
+            +
+          </button>
         </div>
       </div>
       <button
