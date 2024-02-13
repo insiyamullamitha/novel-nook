@@ -28,13 +28,13 @@ export default function Basket() {
 
   return (
     <>
-      <div className="tagline-font py-4 bg-secondary shadow-xl">
+      <div className=" py-4 bg-secondary shadow-xl">
         <div className="my-4">
           <Navbar />
         </div>
       </div>
       <TagLineStrip className="shadow-xl" />
-      <div className="container mx-auto text-black px-8 mt-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-12">
+      <div className="tagline-font container mx-auto text-black px-8 mt-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-12">
         <div>
           <h1 className="text-4xl tagline-font font-bold text-accent1">
             Basket
