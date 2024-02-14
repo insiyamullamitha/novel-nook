@@ -6,7 +6,6 @@ import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import MyProfile from "./pages/MyProfile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 function App() {
   return (

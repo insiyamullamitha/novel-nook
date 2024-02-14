@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useBasket } from "../components/BasketContext";
+import { useBasket } from "./BasketContext";
 import BasketIcon from "../icons/BasketIcon";
 import TickIcon from "../icons/TickIcon";
 

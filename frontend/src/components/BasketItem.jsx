@@ -1,4 +1,4 @@
-import { useBasket } from "../components/BasketContext";
+import { useBasket } from "./BasketContext";
 import { useState } from "react";
 
 export default function BasketItem({ bookTitle, quantity }) {
