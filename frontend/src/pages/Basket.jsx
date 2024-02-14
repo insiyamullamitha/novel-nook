@@ -29,7 +29,7 @@ export default function Basket() {
 
   return (
     <>
-      <div className=" py-4 bg-secondary shadow-xl">
+      <div className="py-4 bg-secondary shadow-xl">
         <div className="my-4">
           <Navbar />
         </div>

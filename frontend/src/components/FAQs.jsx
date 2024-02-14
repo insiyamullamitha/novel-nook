@@ -30,7 +30,7 @@ export default function FAQs() {
         <FAQItem
           question={"How can I return an item?"}
           information={
-            "We accept returns within 14 days of delivery. Please contact us to arrange a return."
+            "Unfortunately we cannot accept returns on books. If you have any other issues, please contact us."
           }
         />
       </div>

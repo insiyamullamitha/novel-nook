@@ -38,7 +38,7 @@ export default function BasketItem({ bookTitle, quantity }) {
             onChange={(e) => setSelectedQuantity(parseInt(e.target.value, 10))}
             readOnly
           >
-            {[...Array(20).keys()].map((option) => (
+            {[...Array(100).keys()].map((option) => (
               <option key={option + 1} value={option + 1}>
                 {option + 1}
               </option>

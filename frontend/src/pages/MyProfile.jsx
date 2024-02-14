@@ -24,7 +24,9 @@ export default function MyProfile() {
             className="w-32 h-36"
           />
           <div>
-            <h2 className="text-secondary tagline-font text-2xl">John Doe</h2>
+            <h2 className="text-secondary tagline-font text-2xl">
+              Insiya Mullamitha
+            </h2>
             <p className="text-black">
               <span className="text-secondary">Email:</span>
               <span className="ml-2">
@@ -37,12 +39,20 @@ export default function MyProfile() {
             </p>
           </div>
         </div>
-        <button className="bg-accent1 rounded-full p-2 mt-8">
-          <Link to="/editprofile" className="flex items-center">
-            Edit Profile&nbsp;
-            <Right />
-          </Link>
-        </button>
+        <div className="flex gap-4 justify-center items-center mt-4">
+          <button className="bg-secondary rounded-full p-2 mt-8">
+            <Link to="/myorders" className="flex items-center">
+              My Orders&nbsp;
+              <Right />
+            </Link>
+          </button>
+          <button className="bg-accent1 rounded-full p-2 mt-8">
+            <Link to="/editprofile" className="flex items-center">
+              Edit Profile&nbsp;
+              <Right />
+            </Link>
+          </button>
+        </div>
       </div>
       <Footer />
     </>

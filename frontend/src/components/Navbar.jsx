@@ -61,13 +61,23 @@ export default function Navbar() {
               Sign Up
             </Link>
           </li>
+          <li>
+            <Link
+              to="/myprofile"
+              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                "/myprofile"
+              )}`}
+            >
+              Profile
+            </Link>
+          </li>
         </ul>
         <div className="relative">
           <Link to="/basket" className="text-black">
             <BasketIcon />
             {basketCount > 0 && (
-              <div className="absolute -top-2 -right-2 bg-accent1 rounded-full p-1 w-4 h-4 flex items-center justify-center text-xs text-white">
-                {basketCount}
+              <div className="absolute -top-3 -right-3 bg-accent1 rounded-full p-1 w-5 h-5 flex items-center justify-center text-xs text-white">
+                {basketCount < 10 ? basketCount : "9+"}
               </div>
             )}
           </Link>
