@@ -17,7 +17,15 @@ const basketReducer = (state, action) => {
 
       if (existingItemIndex !== -1) {
         const updatedItems = [...state.items];
-        updatedItems[existingItemIndex].quantity += action.payload.quantity;
+        if (
+          updatedItems[existingItemIndex].quantity + action.payload.quantity >
+          100
+        ) {
+          updatedItems[existingItemIndex].quantity = 100;
+          alert("You can't add more than 100 of the same item to your basket");
+        } else {
+          updatedItems[existingItemIndex].quantity += action.payload.quantity;
+        }
 
         return {
           ...state,

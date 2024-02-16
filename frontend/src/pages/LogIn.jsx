@@ -21,7 +21,7 @@ export default function LogIn() {
           Welcome back! Log in to your account to access all your books.
         </p>
         <form className="mt-8 max-w-sm m-auto">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col text-black gap-4">
             <input
               type="email"
               placeholder="Email"
