@@ -2,9 +2,32 @@ import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
 import Footer from "../components/Footer";
 import Right from "../icons/Right";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../components/FirebaseApp";
+import { useState } from "react";
 
 export default function LogIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const onLogin = (e) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        navigate("/home");
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
   return (
     <>
       <div className="py-4 bg-secondary shadow-xl">
@@ -26,14 +49,19 @@ export default function LogIn() {
               type="email"
               placeholder="Email"
               className="border-2 bg-white border-black rounded-lg p-3"
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <input
               type="password"
               placeholder="Password"
               className="border-2 bg-white border-black rounded-lg p-3"
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <button
               type="submit"
+              onClick={onLogin}
               className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
               style={{ whiteSpace: "nowrap", overflow: "hidden" }}
             >

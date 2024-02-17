@@ -53,16 +53,6 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              to="/signup"
-              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                "/signup"
-              )}`}
-            >
-              Sign Up
-            </Link>
-          </li>
-          <li>
-            <Link
               to="/myprofile"
               className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
                 "/myprofile"
