@@ -8,20 +8,34 @@ import MyProfile from "./pages/MyProfile";
 import MyOrders from "./pages/MyOrders";
 import VerifyEmail from "./pages/VerifyEmail";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { auth } from "./components/FirebaseApp";
+import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/books" element={<BookMenu />} />
-        <Route path="/basket" element={<Basket />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/myprofile" element={<MyProfile />} />
-        <Route path="/myorders" element={<MyOrders />} />
-        <Route path="/verify-email" element={<VerifyEmail />} />
-        <Route path="*" element={<Home />} />
+        <Route path="/" element={<Home user={user} />} />
+        <Route path="/books" element={<BookMenu user={user} />} />
+        <Route path="/basket" element={<Basket user={user} />} />
+        <Route path="/login" element={<LogIn user={user} />} />
+        <Route path="/signup" element={<SignUp user={user} />} />
+        <Route path="/myprofile" element={<MyProfile user={user} />} />
+        <Route path="/myorders" element={<MyOrders user={user} />} />
+        <Route path="/verify-email" element={<VerifyEmail user={user} />} />
+        <Route path="*" element={<Home user={user} />} />
       </Routes>
     </Router>
   );

@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import BasketIcon from "../icons/BasketIcon";
 import { useBasket, calculateBasketCount } from "./BasketContext";
 
-export default function Navbar() {
+export default function Navbar({ user }) {
   const location = useLocation();
   const { state } = useBasket();
   const basketCount = calculateBasketCount(state.items);
@@ -41,26 +41,42 @@ export default function Navbar() {
               Books
             </Link>
           </li>
-          <li>
-            <Link
-              to="/login"
-              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                "/login"
-              )}`}
-            >
-              Log In
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/myprofile"
-              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                "/myprofile"
-              )}`}
-            >
-              Profile
-            </Link>
-          </li>
+          {!user && (
+            <li>
+              <Link
+                to="/login"
+                className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                  "/login"
+                )}`}
+              >
+                Log In
+              </Link>
+            </li>
+          )}
+          {user && (
+            <>
+              <li>
+                <Link
+                  to="/myprofile"
+                  className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                    "/myprofile"
+                  )}`}
+                >
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/login"
+                  className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                    "/login"
+                  )}`}
+                >
+                  Log Out
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
         <div className="relative">
           <Link to="/basket" className="text-black">

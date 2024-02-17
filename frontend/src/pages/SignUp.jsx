@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../components/FirebaseApp";
 import { useState } from "react";
 
-export default function SignUp() {
+export default function SignUp({ user }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function SignUp() {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        navigate("/verify-email");
+        navigate("/profile");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -39,7 +39,7 @@ export default function SignUp() {
     <>
       <div className="py-4 bg-secondary shadow-xl">
         <div className="my-4">
-          <Navbar />
+          <Navbar user={user} />
         </div>
       </div>
       <TagLineStrip className="shadow-xl" />

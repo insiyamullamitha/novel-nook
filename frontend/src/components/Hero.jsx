@@ -2,12 +2,12 @@ import Navbar from "./Navbar";
 import Right from "../icons/Right";
 import { Link } from "react-scroll";
 
-export default function Hero() {
+export default function Hero({ user }) {
   return (
     <>
       <div className="relative bg-secondary">
         <div className="container mx-auto p-8 text-white">
-          <Navbar />
+          <Navbar user={user} />
           <div className="tagline-font font-bold mt-8 px-8 text-5xl font-bold mb-4 text-black uppercase">
             Fuel <br /> Your Curiosity – <br />
             Find Joy <br />

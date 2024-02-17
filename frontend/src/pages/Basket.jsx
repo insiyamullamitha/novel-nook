@@ -9,7 +9,7 @@ import DiscountCodeInput from "../components/DiscountCodeInput";
 import BasketIcon from "../icons/BasketIcon";
 import { Link } from "react-router-dom";
 
-export default function Basket() {
+export default function Basket({ user }) {
   const { state } = useBasket();
   const emptyBasket = state.items.length === 0;
   const [basketItems, setBasketItems] = useState([]);
@@ -38,7 +38,7 @@ export default function Basket() {
   return (
     <div className="min-h-screen">
       <div className="py-4 bg-secondary shadow-xl">
-        <Navbar />
+        <Navbar user={user} />
       </div>
       <TagLineStrip className="shadow-xl" />
       <div className="container mx-auto text-black px-8 mt-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8">

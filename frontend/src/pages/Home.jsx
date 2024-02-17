@@ -5,10 +5,10 @@ import Footer from "../components/Footer";
 import About from "../components/About";
 import FAQs from "../components/FAQs";
 
-export default function Home() {
+export default function Home({ user }) {
   return (
     <>
-      <Hero />
+      <Hero user={user} />
       <TagLineStrip />
       <HomeBooksMenu />
       <About />

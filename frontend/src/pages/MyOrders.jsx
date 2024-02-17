@@ -3,12 +3,12 @@ import TagLineStrip from "../components/TagLineStrip";
 import Order from "../components/Order";
 import Footer from "../components/Footer";
 
-export default function MyOrders() {
+export default function MyOrders({ user }) {
   return (
     <>
       <div className=" py-4 bg-secondary shadow-xl">
         <div className="my-4">
-          <Navbar />
+          <Navbar user={user} />
         </div>
       </div>
       <TagLineStrip className="shadow-xl" />

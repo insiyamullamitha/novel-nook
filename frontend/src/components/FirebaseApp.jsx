@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence,
+} from "firebase/auth";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVSww84U27TAnGpgcaW2Pn57OvVj7t0Kk",
@@ -11,5 +16,18 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const auth = getAuth(app);
+
+setPersistence(auth, browserLocalPersistence);
+
+const db = getFirestore(app);
+
+export const getBooks = async () => {
+  const booksCol = collection(db, "Book");
+  const bookSnapshot = await getDocs(booksCol);
+  const bookList = bookSnapshot.docs.map((doc) => doc.data());
+  return bookList;
+};
+
+export { auth };
 export default app;

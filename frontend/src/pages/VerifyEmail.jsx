@@ -2,12 +2,12 @@ import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
 import Footer from "../components/Footer";
 
-export default function VerifyEmail() {
+export default function VerifyEmail({ user }) {
   return (
     <>
       <div className="py-4 bg-secondary shadow-xl">
         <div className="my-4">
-          <Navbar />
+          <Navbar user={user} />
         </div>
       </div>
       <TagLineStrip className="shadow-xl" />

@@ -1,17 +1,27 @@
 import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
-import Right from "../icons/Right";
+import { Link, useNavigate } from "react-router-dom";
 import OrderIcon from "../icons/OrderIcon";
 import UserIcon from "../icons/UserIcon";
+import { useEffect } from "react";
 
-export default function MyProfile() {
+export default function MyProfile({ user }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
+
+  if (!user) {
+    return null;
+  }
   return (
     <>
       <div className="py-4 bg-secondary shadow-xl">
         <div className="my-4">
-          <Navbar />
+          <Navbar user={user} />
         </div>
       </div>
       <TagLineStrip className="shadow-xl" />
@@ -32,7 +42,7 @@ export default function MyProfile() {
             <p className="text-black">
               <span className="text-secondary">Email:</span>
               <span className="ml-2">
-                <a href="mailto: test@example.com">test@example.com</a>
+                <a href="mailto: test@example.com">{user.email}</a>
               </span>
             </p>
           </div>
