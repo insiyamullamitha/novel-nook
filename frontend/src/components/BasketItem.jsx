@@ -15,7 +15,7 @@ export default function BasketItem({ bookTitle, quantity }) {
   };
 
   return (
-    <div className="my-4 bg-white shadow-xl rounded-lg p-4 flex tagline-font items-center justify-between">
+    <div className="my-6 bg-white shadow-xl rounded-lg p-4 flex tagline-font items-center justify-between">
       <div className="flex items-center gap-8">
         <img
           className="max-h-24 block"
@@ -31,7 +31,6 @@ export default function BasketItem({ bookTitle, quantity }) {
       </div>
       <div className="flex flex-col items-center">
         {" "}
-        {/* Added a container div for quantity and buttons */}
         <p className="text-gray-500">Quantity: </p>
         <form>
           <select

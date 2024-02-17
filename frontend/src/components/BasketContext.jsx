@@ -71,7 +71,7 @@ export const BasketProvider = ({ children }) => {
 
       dispatch({
         type: "DELETE_ITEM",
-        payload: updatedItems, // Change payload to the updatedItems array directly
+        payload: updatedItems,
       });
     },
     [state.items]
