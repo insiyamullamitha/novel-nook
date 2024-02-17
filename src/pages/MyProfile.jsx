@@ -5,14 +5,26 @@ import { Link, useNavigate } from "react-router-dom";
 import OrderIcon from "../icons/OrderIcon";
 import UserIcon from "../icons/UserIcon";
 import { useEffect } from "react";
+import { auth } from "../components/FirebaseApp";
 
-export default function MyProfile({ user }) {
+export default function MyProfile({ user, setUser }) {
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) {
       navigate("/login");
     }
   }, [user, navigate]);
+
+  const handleLogout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        setUser(null);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   if (!user) {
     return null;
@@ -37,7 +49,7 @@ export default function MyProfile({ user }) {
           />
           <div>
             <h2 className="text-accent1 tagline-font text-2xl">
-              Insiya Mullamitha
+              {user.fullName}
             </h2>
             <p className="text-black">
               <span className="text-secondary">Email:</span>
@@ -66,6 +78,15 @@ export default function MyProfile({ user }) {
               <UserIcon />
             </button>
           </Link>
+          <button
+            type="submit"
+            onClick={handleLogout}
+            className="flex gap-2 bg-accent2 text-black uppercase font-bold rounded-full px-4 py-2 items-center my-4 tracking-wide"
+            style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+          >
+            Log Out
+            <UserIcon />
+          </button>
         </div>
       </div>
       <Footer />

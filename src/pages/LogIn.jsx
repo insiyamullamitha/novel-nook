@@ -2,16 +2,16 @@ import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
 import Footer from "../components/Footer";
 import Right from "../icons/Right";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../components/FirebaseApp";
+import { auth, db } from "../components/FirebaseApp";
 import { useState } from "react";
 import UserIcon from "../icons/UserIcon";
+import { getDoc, doc } from "firebase/firestore/lite";
 
 export default function LogIn({ user, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     auth
@@ -20,8 +20,24 @@ export default function LogIn({ user, setUser }) {
         setUser(null);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
+  };
+
+  const getUserDataFromFirestore = async (uid, setUser) => {
+    try {
+      const userDoc = await getDoc(doc(db, "User", uid));
+      if (userDoc.exists) {
+        const userData = userDoc.data();
+        setUser({
+          uid,
+          email: userData.email,
+          fullName: userData.fullName,
+        });
+      }
+    } catch (error) {
+      console.error("Error getting user data from firestore", error);
+    }
   };
 
   const onLogin = (e) => {
@@ -30,7 +46,7 @@ export default function LogIn({ user, setUser }) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        setUser(user);
+        getUserDataFromFirestore(user.uid, setUser);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -54,7 +70,7 @@ export default function LogIn({ user, setUser }) {
       <div className="container py-8 text-center mx-auto px-8">
         {user ? (
           <p className="text-black mt-4">
-            Welcome back, {user.email}! You are logged in.
+            Welcome back, {user.fullName}! You are logged in.
             <button
               type="submit"
               onClick={handleLogout}

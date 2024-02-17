@@ -6,7 +6,6 @@ import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import MyProfile from "./pages/MyProfile";
 import MyOrders from "./pages/MyOrders";
-import VerifyEmail from "./pages/VerifyEmail";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { auth } from "./components/FirebaseApp";
@@ -34,10 +33,15 @@ function App() {
           path="/login"
           element={<LogIn user={user} setUser={setUser} />}
         />
-        <Route path="/signup" element={<SignUp user={user} />} />
-        <Route path="/myprofile" element={<MyProfile user={user} />} />
+        <Route
+          path="/signup"
+          element={<SignUp user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/myprofile"
+          element={<MyProfile user={user} setUser={setUser} />}
+        />
         <Route path="/myorders" element={<MyOrders user={user} />} />
-        <Route path="/verify-email" element={<VerifyEmail user={user} />} />
         <Route path="*" element={<Home user={user} />} />
       </Routes>
     </Router>

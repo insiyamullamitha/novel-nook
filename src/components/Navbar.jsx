@@ -65,16 +65,6 @@ export default function Navbar({ user }) {
                   Profile
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/login"
-                  className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                    "/login"
-                  )}`}
-                >
-                  Log Out
-                </Link>
-              </li>
             </>
           )}
         </ul>

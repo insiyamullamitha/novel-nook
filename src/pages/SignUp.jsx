@@ -4,13 +4,11 @@ import TagLineStrip from "../components/TagLineStrip";
 import Footer from "../components/Footer";
 import Right from "../icons/Right";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../components/FirebaseApp";
+import { auth, saveUserDataToFirestore } from "../components/FirebaseApp";
 import { useState } from "react";
-import KeyIcon from "../icons/KeyIcon";
-import UserIcon from "../icons/UserIcon";
-import EnvelopeIcon from "../icons/EnvelopeIcon";
 
-export default function SignUp({ user }) {
+export default function SignUp({ user, setUser }) {
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -18,26 +16,26 @@ export default function SignUp({ user }) {
   async function onSubmit(e) {
     e.preventDefault();
 
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        navigate("/profile");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        if (errorCode === "auth/email-already-in-use") {
-          alert(
-            "The email address is already in use by another account. Please log in."
-          );
-          navigate("/login");
-        } else if (errorCode === "auth/invalid-email") {
-          alert("The email address is invalid.");
-        } else if (errorCode === "auth/weak-password") {
-          alert("The password is too weak.");
-        }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      await saveUserDataToFirestore(userCredential.user.uid, fullName, email);
+
+      setUser({
+        uid: userCredential.user.uid,
+        fullName: fullName,
+        email: email,
       });
+      navigate("/profile");
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
   }
+
   return (
     <>
       <div className="py-4 bg-secondary shadow-xl">
@@ -61,6 +59,7 @@ export default function SignUp({ user }) {
               placeholder="Full Name"
               className="border-2 border-black bg-white rounded-lg p-3"
               required
+              onChange={(e) => setFullName(e.target.value)}
             />
             <input
               type="email"
@@ -76,17 +75,15 @@ export default function SignUp({ user }) {
               required
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Link to="/verify-email">
-              <button
-                type="submit"
-                onClick={onSubmit}
-                className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
-                style={{ whiteSpace: "nowrap", overflow: "hidden" }}
-              >
-                Sign Up
-                <Right />
-              </button>
-            </Link>
+            <button
+              type="submit"
+              onClick={onSubmit}
+              className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
+              style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+            >
+              Sign Up
+              <Right />
+            </button>
           </div>
         </form>
         <p className="text-black mt-4">
