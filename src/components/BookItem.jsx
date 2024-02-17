@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useBasket } from "./BasketContext";
 import BasketIcon from "../icons/BasketIcon";
 import TickIcon from "../icons/TickIcon";
+import InfoIcon from "../icons/InfoIcon";
 import { getImageFile } from "./FirebaseApp";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function BookItem({ bookTitle }) {
   const [quantity, setQuantity] = useState(1);
@@ -49,22 +51,32 @@ export default function BookItem({ bookTitle }) {
   };
 
   return (
-    <div className="bg-transparent text-black border-2 border-black p-4 rounded-lg text-center hover:shadow-md hover:bg-darkerprimary hover:shadow-black/25 over:bg-white transition-all">
+    <div className="bg-transparent text-black border-2 border-black p-4 rounded-lg text-center hover:shadow-md hover:shadow-black/25 over:bg-white transition-all">
       <div className="text-center">
-        <p className="tagline-font h-9 mb-2 items-center font-bold capitalize text-m">
-          {bookTitle.replace(/_/g, " ")}
-        </p>
+        <div className="flex flex-row mt-1 mb-4 h-9 items-center justify-center">
+          <p className="tagline-font mb-0 items-center font-bold capitalize text-m">
+            {bookTitle.replace(/_/g, " ")}
+          </p>
+          <Link to={`/books/${bookTitle}`}>
+            <button
+              className={`text-4xl flex gap-2 text-black uppercase text-sm font-semibold rounded-full px-2 py-2 mt-0.5 justify-center items-center m-auto tracking-wide hover:font-bold `}
+              style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+            >
+              <InfoIcon />
+            </button>
+          </Link>
+        </div>
         {loading ? (
           <div>Loading...</div>
         ) : (
           <img
             src={image}
             alt={`${bookTitle} cover`}
-            className="max-h-24 block justify-center m-auto"
+            className="max-w-24 block justify-center m-auto"
           />
         )}
       </div>
-      <div className="flex items-center justify-center mt-4">
+      <div className="flex items-center justify-center gap-4 mt-4">
         <div className="flex bg-white items-center rounded-full">
           <button
             className={`text-black uppercase text-sm font-semibold rounded-l-full px-3 py-1 hover:font-bold hover:text-red-500 transition-all ${

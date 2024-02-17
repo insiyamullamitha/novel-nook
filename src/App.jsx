@@ -6,6 +6,7 @@ import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import MyProfile from "./pages/MyProfile";
 import MyOrders from "./pages/MyOrders";
+import BookInformation from "./pages/BookInformation";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { auth } from "./components/FirebaseApp";
@@ -28,6 +29,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={user} />} />
         <Route path="/books" element={<BookMenu user={user} />} />
+        <Route
+          path="/books/:bookTitle"
+          element={<BookInformation user={user} />}
+        />
         <Route path="/basket" element={<Basket user={user} />} />
         <Route
           path="/login"

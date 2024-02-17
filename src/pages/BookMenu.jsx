@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"; // Import useEffect and useState
+import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
@@ -7,7 +7,7 @@ import BookItem from "../components/BookItem";
 import { getBooks } from "../components/FirebaseApp";
 
 export default function BookMenu({ user }) {
-  const [bookList, setBookList] = useState([]); // Create a state for bookList
+  const [bookList, setBookList] = useState([]);
 
   useEffect(() => {
     const fetchBooks = async () => {

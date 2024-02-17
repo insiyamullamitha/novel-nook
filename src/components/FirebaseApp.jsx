@@ -31,6 +31,14 @@ export const getBooks = async () => {
   return bookList;
 };
 
+export const getBook = async (bookTitle) => {
+  const booksCol = collection(db, "Book");
+  const bookSnapshot = await getDocs(booksCol);
+  const bookList = bookSnapshot.docs.map((doc) => doc.data());
+  const book = bookList.find((book) => book.Title === bookTitle);
+  return book;
+};
+
 export const getImageFile = async (imagePath) => {
   const imageRef = ref(getStorage(app), "book_images/" + imagePath + ".png");
   try {
