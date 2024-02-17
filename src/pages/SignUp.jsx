@@ -6,6 +6,9 @@ import Right from "../icons/Right";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../components/FirebaseApp";
 import { useState } from "react";
+import KeyIcon from "../icons/KeyIcon";
+import UserIcon from "../icons/UserIcon";
+import EnvelopeIcon from "../icons/EnvelopeIcon";
 
 export default function SignUp({ user }) {
   const [email, setEmail] = useState("");

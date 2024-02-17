@@ -2,11 +2,29 @@ import React, { useState } from "react";
 import { useBasket } from "./BasketContext";
 import BasketIcon from "../icons/BasketIcon";
 import TickIcon from "../icons/TickIcon";
+import { getImageFile } from "./FirebaseApp";
+import { useEffect } from "react";
 
 export default function BookItem({ bookTitle }) {
   const [quantity, setQuantity] = useState(1);
   const [addedToBasket, setAddedToBasket] = useState(false);
   const { addToBasket } = useBasket();
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    getImageFile(bookTitle)
+      .then((url) => {
+        setImage(url);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(`Error fetching image for ${bookTitle}`, error);
+        setImage(null);
+        setLoading(false);
+      });
+  }, [bookTitle]);
 
   const increaseQuantity = () => {
     if (quantity < 100) {
@@ -36,11 +54,15 @@ export default function BookItem({ bookTitle }) {
         <p className="tagline-font h-9 mb-2 items-center font-bold capitalize text-m">
           {bookTitle.replace(/_/g, " ")}
         </p>
-        <img
-          className={"max-h-auto relative max-h-24 block mx-auto mt-4"}
-          src={"/" + bookTitle + ".png"}
-          alt="book"
-        />
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <img
+            src={image}
+            alt={`${bookTitle} cover`}
+            className="max-h-24 block justify-center m-auto"
+          />
+        )}
       </div>
       <div className="flex items-center justify-center mt-4">
         <div className="flex bg-white items-center rounded-full">

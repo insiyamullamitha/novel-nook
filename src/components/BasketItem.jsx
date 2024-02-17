@@ -1,9 +1,12 @@
 import { useBasket } from "./BasketContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getImageFile } from "./FirebaseApp";
 
 export default function BasketItem({ bookTitle, quantity }) {
   const { deleteItem, updateQuantity } = useBasket();
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false); // Add missing loading state variable
 
   const handleQuantityUpdate = () => {
     updateQuantity(bookTitle, selectedQuantity);
@@ -14,14 +17,24 @@ export default function BasketItem({ bookTitle, quantity }) {
     setSelectedQuantity(1);
   };
 
+  useEffect(() => {
+    setLoading(true);
+    getImageFile(bookTitle)
+      .then((url) => {
+        setImage(url);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(`Error fetching image for ${bookTitle}`, error);
+        setImage(null);
+        setLoading(false);
+      });
+  }, [bookTitle]);
+
   return (
     <div className="my-6 bg-white shadow-xl rounded-lg p-4 flex tagline-font items-center justify-between">
       <div className="flex items-center gap-8">
-        <img
-          className="max-h-24 block"
-          src={`/${bookTitle}.png`}
-          alt={`${bookTitle} cover`}
-        />
+        <img className="max-h-24 block" src={image} />
         <div>
           <h3 className="text-m min-w-13 max-w-13 w-13 text-black capitalize overflow-hidden">
             {bookTitle.replace(/_/g, " ")}

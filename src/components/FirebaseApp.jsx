@@ -5,6 +5,7 @@ import {
   browserLocalPersistence,
 } from "firebase/auth";
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { ref, getDownloadURL, getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVSww84U27TAnGpgcaW2Pn57OvVj7t0Kk",
@@ -27,6 +28,17 @@ export const getBooks = async () => {
   const bookSnapshot = await getDocs(booksCol);
   const bookList = bookSnapshot.docs.map((doc) => doc.data());
   return bookList;
+};
+
+export const getImageFile = async (imagePath) => {
+  const imageRef = ref(getStorage(app), "book_images/" + imagePath + ".png");
+  try {
+    const url = await getDownloadURL(imageRef);
+    return url;
+  } catch (error) {
+    console.error("Error getting image", error);
+    return null;
+  }
 };
 
 export { auth };

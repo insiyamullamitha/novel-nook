@@ -8,7 +8,7 @@ import { auth } from "../components/FirebaseApp";
 import { useState } from "react";
 import UserIcon from "../icons/UserIcon";
 
-export default function LogIn({ user }) {
+export default function LogIn({ user, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -35,7 +35,12 @@ export default function LogIn({ user }) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert("The email or password is incorrect. Please try again.");
+        if (
+          errorCode === "auth/wrong-password" ||
+          errorCode === "auth/user-not-found"
+        ) {
+          alert("The email or password is incorrect. Please try again.");
+        }
       });
   };
   return (
