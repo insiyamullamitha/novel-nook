@@ -42,16 +42,28 @@ export default function Navbar({ user }) {
             </Link>
           </li>
           {!user && (
-            <li>
-              <Link
-                to="/login"
-                className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                  "/login"
-                )}`}
-              >
-                Log In
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link
+                  to="/login"
+                  className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                    "/login"
+                  )}`}
+                >
+                  Log In
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/signup"
+                  className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
+                    "/signup"
+                  )}`}
+                >
+                  Sign Up
+                </Link>
+              </li>
+            </>
           )}
           {user && (
             <>
