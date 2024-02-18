@@ -69,7 +69,7 @@ export default function LogIn({ user, setUser }) {
       <TagLineStrip className="shadow-xl" />
       <div className="container py-8 text-center mx-auto px-8">
         {user ? (
-          <p className="text-black mt-4">
+          <p className="text-black tagline-font mt-4">
             Welcome back, {user.fullName}! You are logged in.
             <button
               type="submit"
@@ -82,34 +82,33 @@ export default function LogIn({ user, setUser }) {
             </button>
           </p>
         ) : (
-          <div>
-            <h1 className="text-secondary tagline-font uppercase text-4xl">
+          <div className="max-w-md m-auto">
+            <h1 className="text-secondary tagline-font uppercase text-4xl mb-4">
               Log In
             </h1>
-            <p className="text-black mt-4">
+            <p className="tagline-font text-black">
               Welcome back! Log in to your account to access all your books.
             </p>
-            <form className="mt-8 max-w-sm m-auto">
+            <form className="mt-8">
               <div className="flex flex-col text-black gap-4">
                 <input
                   type="email"
-                  placeholder="Email"
-                  className="border-2 bg-white border-black rounded-lg p-3"
+                  className="border-2 bg-white border-black rounded-lg p-3 focus:outline-none focus:border-accent1"
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
                   required
                 />
                 <input
                   type="password"
                   placeholder="Password"
-                  className="border-2 bg-white border-black rounded-lg p-3"
+                  className="border-2 bg-white border-black rounded-lg p-3 focus:outline-none focus:border-accent1"
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <button
                   type="submit"
                   onClick={onLogin}
-                  className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide"
-                  style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+                  className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide hover:bg-accent1 focus:outline-none"
                 >
                   Log In
                   <Right />

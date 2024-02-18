@@ -4,10 +4,15 @@ import { getBook, getImageFile } from "../components/FirebaseApp";
 import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
 import Footer from "../components/Footer";
+import { useBasket } from "../components/BasketContext";
+import BasketIcon from "../icons/BasketIcon";
+import TickIcon from "../icons/TickIcon";
 
 export default function BookInformation({ user }) {
   const { bookTitle } = useParams();
   const [book, setBook] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [showMore, setShowMore] = useState(false);
   const [bookDescription, setBookDescription] = useState(
     "No Description available for this book."
   );
@@ -17,7 +22,31 @@ export default function BookInformation({ user }) {
   const [bookImagePath, setBookImagePath] = useState(null);
   const [loading, setLoading] = useState(true);
   const [ISBN, setISBN] = useState(null);
-  const [descriptionFetched, setDescriptionFetched] = useState(false); // New state
+  const [descriptionFetched, setDescriptionFetched] = useState(false);
+  const { addToBasket } = useBasket();
+  const [addedToBasket, setAddedToBasket] = useState(false);
+
+  const increaseQuantity = () => {
+    if (quantity < 100) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleAddToBasket = () => {
+    setAddedToBasket(true);
+    addToBasket({ bookTitle, quantity });
+
+    setTimeout(() => {
+      setAddedToBasket(false);
+      setQuantity(1);
+    }, 3000);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -95,16 +124,80 @@ export default function BookInformation({ user }) {
         <Navbar user={user} />
       </div>
       <TagLineStrip className="shadow-xl" />
-      <div className="container mx-auto text-black tagline-font px-8 mt-12 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
-        <h1 className="uppercase m-auto">{bookTitle.replace(/_/g, " ")}</h1>
-        <p className="m-auto">{bookDescription}</p>
-        <p className="m-auto">{bookAuthor}</p>
-        <p className="m-auto">ISBN: {ISBN}</p>
+      <div className="container mx-auto sm:mx-0 mt-8 p-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8">
         {bookImagePath && (
-          <div className="max-w-60 mb-12 m-auto">
-            <img src={bookImagePath} alt={bookTitle} />
+          <div className="relative mx-auto">
+            <img
+              className="max-h-80 rounded-md shadow-md"
+              src={bookImagePath}
+              alt={bookTitle}
+            />
           </div>
         )}
+        <div className="flex flex-col justify-start">
+          <h1 className="text-3xl tagline-font uppercase text-black font-bold mb-4">
+            {bookTitle.replace(/_/g, " ")}
+          </h1>
+          <div className="description-container">
+            <p className="text-gray-700 tagline-font mb-4">
+              {showMore
+                ? bookDescription
+                : `${bookDescription.slice(0, 200)}...`}
+              {bookDescription.length > 200 && (
+                <button
+                  className="text-secondary hover:underline"
+                  onClick={() => setShowMore(!showMore)}
+                >
+                  {showMore ? " Show less" : " Show more"}
+                </button>
+              )}
+            </p>
+          </div>
+          <p className="text-black tagline-font">Author: {bookAuthor}</p>
+          <p className="text-black tagline-font">ISBN: {ISBN}</p>
+          <p className="text-black tagline-font">Price: £8.99</p>
+          <div className="flex items-center gap-6 mt-4">
+            <div className="flex bg-white items-center rounded-full">
+              <button
+                className={`text-black uppercase text-sm font-semibold rounded-l-full px-3 py-2 hover:font-bold hover:text-red-500 transition-all ${
+                  addedToBasket ? "text-white" : ""
+                }`}
+                onClick={decreaseQuantity}
+              >
+                -
+              </button>
+              <span className="text-black uppercase text-sm font-semibold px-3 py-1">
+                {quantity}
+              </span>
+              <div className="bg-white items-center rounded-full">
+                <button
+                  className={`text-black uppercase text-sm font-semibold rounded-r-full px-3 py-1 hover:font-bold hover:text-green-500 transition-all ${
+                    addedToBasket ? "text-white" : ""
+                  }`}
+                  onClick={increaseQuantity}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <button
+              className={`bg-black mt-4 mb-4 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center tracking-wide hover:font-bold hover:bg-gray-800`}
+              onClick={handleAddToBasket}
+            >
+              {addedToBasket ? (
+                <>
+                  <span>Added</span>
+                  <TickIcon className={`spin`} />
+                </>
+              ) : (
+                <>
+                  <span>Add To Basket</span>
+                  <BasketIcon />
+                </>
+              )}
+            </button>
+          </div>
+        </div>
       </div>
       <Footer />
     </div>

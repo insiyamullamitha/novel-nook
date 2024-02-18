@@ -27,7 +27,7 @@ export default function BookMenu({ user }) {
         </div>
       </div>
       <TagLineStrip className="shadow-xl" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 my-16 container mx-auto px-8">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 my-16 container mx-auto px-8">
         {bookList.map((book) => {
           return <BookItem key={book.Title} bookTitle={book.Title} />;
         })}
