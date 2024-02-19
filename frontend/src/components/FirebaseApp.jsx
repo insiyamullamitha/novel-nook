@@ -63,5 +63,16 @@ export const saveUserDataToFirestore = async (uid, fullName, email) => {
   }
 };
 
+export const saveOrderToFirestore = async (uid, order) => {
+  console.log(order);
+  try {
+    const orderDocRef = doc(db, "Order", uid);
+    await setDoc(orderDocRef, order);
+    console.log("Order saved to firestore");
+  } catch (error) {
+    console.error("Error saving order to firestore", error);
+  }
+};
+
 export { auth, db };
 export default app;
