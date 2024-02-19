@@ -7,7 +7,12 @@ import SignUp from "./pages/SignUp";
 import MyProfile from "./pages/MyProfile";
 import MyOrders from "./pages/MyOrders";
 import BookInformation from "./pages/BookInformation";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { auth } from "./components/FirebaseApp";
 import { onAuthStateChanged } from "firebase/auth";
@@ -36,18 +41,42 @@ function App() {
         <Route path="/basket" element={<Basket user={user} />} />
         <Route
           path="/login"
-          element={<LogIn user={user} setUser={setUser} />}
+          element={
+            user ? (
+              <Navigate to="/myprofile" />
+            ) : (
+              <LogIn user={user} setUser={setUser} />
+            )
+          }
         />
         <Route
           path="/signup"
-          element={<SignUp user={user} setUser={setUser} />}
+          element={
+            user ? (
+              <Navigate to="/myprofile" />
+            ) : (
+              <SignUp user={user} setUser={setUser} />
+            )
+          }
         />
         <Route
           path="/myprofile"
-          element={<MyProfile user={user} setUser={setUser} />}
+          element={
+            user ? (
+              <MyProfile user={user} setUser={setUser} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
-        <Route path="/myorders" element={<MyOrders user={user} />} />
-        <Route path="*" element={<Home user={user} />} />
+        <Route
+          path="/myorders"
+          element={user ? <MyOrders user={user} /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="*"
+          element={user ? <Home user={user} /> : <Navigate to="/login" />}
+        />
       </Routes>
     </Router>
   );

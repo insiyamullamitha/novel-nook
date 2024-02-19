@@ -6,23 +6,14 @@ import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../components/FirebaseApp";
 import { useState } from "react";
-import UserIcon from "../icons/UserIcon";
 import { getDoc, doc } from "firebase/firestore/lite";
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function LogIn({ user, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleLogout = () => {
-    auth
-      .signOut()
-      .then(() => {
-        setUser(null);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  const navigate = useNavigate();
 
   const getUserDataFromFirestore = async (uid, setUser) => {
     try {
@@ -50,7 +41,6 @@ export default function LogIn({ user, setUser }) {
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
         if (
           errorCode === "auth/wrong-password" ||
           errorCode === "auth/user-not-found"
@@ -59,6 +49,11 @@ export default function LogIn({ user, setUser }) {
         }
       });
   };
+
+  if (user) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <>
       <div className="py-4 bg-secondary shadow-xl">
@@ -68,61 +63,46 @@ export default function LogIn({ user, setUser }) {
       </div>
       <TagLineStrip className="shadow-xl" />
       <div className="container py-8 text-center mx-auto px-8">
-        {user ? (
-          <p className="text-black tagline-font mt-4">
-            Welcome back, {user.fullName}! You are logged in.
-            <button
-              type="submit"
-              onClick={handleLogout}
-              className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 mt-4 py-2 justify-center items-center m-auto tracking-wide"
-              style={{ whiteSpace: "nowrap", overflow: "hidden" }}
-            >
-              Log Out
-              <UserIcon />
-            </button>
+        <div className="max-w-md m-auto">
+          <h1 className="text-secondary tagline-font uppercase text-4xl mb-4">
+            Log In
+          </h1>
+          <p className="tagline-font text-black">
+            Welcome back! Log in to your account to access all your books.
           </p>
-        ) : (
-          <div className="max-w-md m-auto">
-            <h1 className="text-secondary tagline-font uppercase text-4xl mb-4">
-              Log In
-            </h1>
-            <p className="tagline-font text-black">
-              Welcome back! Log in to your account to access all your books.
-            </p>
-            <form className="mt-8">
-              <div className="flex flex-col text-black gap-4">
-                <input
-                  type="email"
-                  className="border-2 bg-white border-black rounded-lg p-3 focus:outline-none focus:border-accent1"
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email"
-                  required
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="border-2 bg-white border-black rounded-lg p-3 focus:outline-none focus:border-accent1"
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <button
-                  type="submit"
-                  onClick={onLogin}
-                  className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide hover:bg-accent1 focus:outline-none"
-                >
-                  Log In
-                  <Right />
-                </button>
-              </div>
-            </form>
-            <p className="text-black mt-4">
-              Don't have an account?{" "}
-              <Link to="/signup" className="text-accent1">
-                Sign Up
-              </Link>
-            </p>
-          </div>
-        )}
+          <form className="mt-8">
+            <div className="flex flex-col text-black gap-4">
+              <input
+                type="email"
+                className="border-2 bg-white border-black rounded-lg p-3 focus:outline-none focus:border-accent1"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="border-2 bg-white border-black rounded-lg p-3 focus:outline-none focus:border-accent1"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="submit"
+                onClick={onLogin}
+                className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide hover:bg-accent1 focus:outline-none"
+              >
+                Log In
+                <Right />
+              </button>
+            </div>
+          </form>
+          <p className="text-black mt-4">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-accent1">
+              Sign Up
+            </Link>
+          </p>
+        </div>
       </div>
       <Footer />
     </>
