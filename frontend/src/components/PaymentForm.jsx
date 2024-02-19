@@ -3,6 +3,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { saveOrderToFirestore } from "./FirebaseApp";
+import { useBasket } from "./BasketContext";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -26,11 +27,24 @@ export default function PaymentForm({ price, basketItems, user }) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const { clearBasket } = useBasket();
+
+  const handlePaymentSuccess = () => {
+    clearBasket();
+  };
 
   const order = {
     user: user.email,
-    items: basketItems,
+    items: basketItems.map((item) => ({
+      title: item.props.bookTitle,
+      quantity: item.props.quantity,
+    })),
+    totalquantity: basketItems.reduce(
+      (acc, item) => acc + item.props.quantity,
+      0
+    ),
     price: price,
+    date: new Date().toLocaleDateString(),
   };
 
   const handleSubmit = async (e) => {
@@ -79,12 +93,17 @@ export default function PaymentForm({ price, basketItems, user }) {
               />
             </div>
           </div>
-          <button className="bg-accent1 uppercase mx-auto flex text-white py-2 px-5 rounded-full">
+          <button
+            className="bg-accent1 uppercase mx-auto flex text-white py-2 px-5 rounded-full"
+            onClick={handleSubmit}
+          >
             Pay Now
           </button>
         </form>
       ) : (
-        (saveOrderToFirestore(user.uid, order), (<Navigate to="/myorders" />))
+        (saveOrderToFirestore(user.uid, order),
+        handlePaymentSuccess(),
+        (<Navigate to="/myorders" />))
       )}
     </div>
   );

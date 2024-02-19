@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
 import BasketItem from "../components/BasketItem";
@@ -11,9 +11,8 @@ import { Link } from "react-router-dom";
 import StripeContainer from "../components/StripeContainer";
 
 export default function Basket({ user }) {
-  const { state } = useBasket();
+  const { state, updateQuantity, deleteItem } = useBasket();
   const emptyBasket = state.items.length === 0;
-  const [bookTitles, setBookTitles] = useState([]);
   const [basketItems, setBasketItems] = useState([]);
   const [price, setPrice] = useState(
     `£${(calculateBasketCount(state.items) * 8.99).toFixed(2)}`
@@ -29,19 +28,16 @@ export default function Basket({ user }) {
           key={index}
           bookTitle={item.bookTitle}
           quantity={item.quantity}
+          updateQuantity={updateQuantity}
+          deleteItem={deleteItem}
         />
       ));
       setBasketItems(itemsArray);
-      const titles = state.items.map((item) =>
-        Array.isArray(item.bookTitle)
-          ? item.bookTitle.join(", ")
-          : item.bookTitle
-      );
-      setBookTitles(titles);
+      console.log("Basket items:", itemsArray);
     }
     setPrice((basketCount * 8.99).toFixed(2));
     setShippingPrice(basketCount * 8.99 > 25 ? 0 : 3.99);
-  }, [state.items, emptyBasket, basketCount]);
+  }, [state.items, emptyBasket, basketCount, updateQuantity, deleteItem]);
 
   return (
     <div className="min-h-screen">
@@ -119,7 +115,7 @@ export default function Basket({ user }) {
               <div>
                 <StripeContainer
                   price={(basketCount * 8.99 + shippingPrice).toFixed(2)}
-                  basketItems={bookTitles}
+                  basketItems={basketItems}
                   user={user}
                 />
                 <button

@@ -4,9 +4,15 @@ import {
   setPersistence,
   browserLocalPersistence,
 } from "firebase/auth";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  setDoc,
+  addDoc,
+  doc,
+} from "firebase/firestore/lite";
 import { ref, getDownloadURL, getStorage } from "firebase/storage";
-import { setDoc, doc } from "firebase/firestore/lite";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVSww84U27TAnGpgcaW2Pn57OvVj7t0Kk",
@@ -66,11 +72,26 @@ export const saveUserDataToFirestore = async (uid, fullName, email) => {
 export const saveOrderToFirestore = async (uid, order) => {
   console.log(order);
   try {
-    const orderDocRef = doc(db, "Order", uid);
-    await setDoc(orderDocRef, order);
+    const orderDocRef = collection(db, "Order");
+    await addDoc(orderDocRef, order);
     console.log("Order saved to firestore");
   } catch (error) {
     console.error("Error saving order to firestore", error);
+  }
+};
+
+export const getOrders = async (uid) => {
+  try {
+    const ordersCol = collection(db, "Order");
+    const orderSnapshot = await getDocs(ordersCol);
+    const orderList = orderSnapshot.docs.map((doc) => doc.data());
+    console.log("Orders fetched:", orderList);
+    const userOrders = orderList.filter((order) => order.user === uid);
+    console.log("User orders:", userOrders);
+    return userOrders;
+  } catch (error) {
+    console.error("Error getting orders", error);
+    throw error;
   }
 };
 

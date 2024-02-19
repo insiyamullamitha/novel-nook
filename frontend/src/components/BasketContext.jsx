@@ -7,6 +7,7 @@ const initialState = {
 const ADD_TO_BASKET = "ADD_TO_BASKET";
 const DELETE_ITEM = "DELETE_ITEM";
 const UPDATE_QUANTITY = "UPDATE_QUANTITY";
+const CLEAR_BASKET = "CLEAR_BASKET";
 
 const basketReducer = (state, action) => {
   switch (action.type) {
@@ -17,15 +18,15 @@ const basketReducer = (state, action) => {
 
       if (existingItemIndex !== -1) {
         const updatedItems = [...state.items];
-        if (
-          updatedItems[existingItemIndex].quantity + action.payload.quantity >
-          100
-        ) {
-          updatedItems[existingItemIndex].quantity = 100;
+        const updatedQuantity =
+          updatedItems[existingItemIndex].quantity + action.payload.quantity;
+
+        if (updatedQuantity > 100) {
           alert("You can't add more than 100 of the same item to your basket");
-        } else {
-          updatedItems[existingItemIndex].quantity += action.payload.quantity;
+          return state;
         }
+
+        updatedItems[existingItemIndex].quantity = updatedQuantity;
 
         return {
           ...state,
@@ -48,6 +49,12 @@ const basketReducer = (state, action) => {
       return {
         ...state,
         items: action.payload,
+      };
+
+    case CLEAR_BASKET:
+      return {
+        ...state,
+        items: [],
       };
 
     default:
@@ -94,9 +101,13 @@ export const BasketProvider = ({ children }) => {
     });
   });
 
+  const clearBasket = useCallback(() => {
+    dispatch({ type: CLEAR_BASKET });
+  });
+
   return (
     <BasketContext.Provider
-      value={{ state, addToBasket, deleteItem, updateQuantity }}
+      value={{ state, addToBasket, deleteItem, updateQuantity, clearBasket }}
     >
       {children}
     </BasketContext.Provider>
