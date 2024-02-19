@@ -13,6 +13,7 @@ import StripeContainer from "../components/StripeContainer";
 export default function Basket({ user }) {
   const { state } = useBasket();
   const emptyBasket = state.items.length === 0;
+  const [bookTitles, setBookTitles] = useState([]);
   const [basketItems, setBasketItems] = useState([]);
   const [price, setPrice] = useState(
     `£${(calculateBasketCount(state.items) * 8.99).toFixed(2)}`
@@ -30,8 +31,13 @@ export default function Basket({ user }) {
           quantity={item.quantity}
         />
       ));
-
       setBasketItems(itemsArray);
+      const titles = state.items.map((item) =>
+        Array.isArray(item.bookTitle)
+          ? item.bookTitle.join(", ")
+          : item.bookTitle
+      );
+      setBookTitles(titles);
     }
     setPrice((basketCount * 8.99).toFixed(2));
     setShippingPrice(basketCount * 8.99 > 25 ? 0 : 3.99);
@@ -113,6 +119,8 @@ export default function Basket({ user }) {
               <div>
                 <StripeContainer
                   price={(basketCount * 8.99 + shippingPrice).toFixed(2)}
+                  basketItems={bookTitles}
+                  user={user}
                 />
                 <button
                   onClick={() => setCheckout(!checkout)}

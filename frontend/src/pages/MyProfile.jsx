@@ -50,7 +50,7 @@ export default function MyProfile({ user, setUser }) {
         <div className="flex gap-4 justify-center items-center mt-12">
           <Link to="/myorders">
             <button
-              className="flex gap-2 bg-secondary text-black uppercase font-bold rounded-full px-4 py-2 items-center my-4 tracking-wide"
+              className="flex gap-2 bg-accent2 text-black uppercase font-bold rounded-full px-4 py-2 items-center my-4 tracking-wide"
               style={{ whiteSpace: "nowrap", overflow: "hidden" }}
             >
               My Orders
@@ -61,7 +61,7 @@ export default function MyProfile({ user, setUser }) {
             <button
               type="submit"
               onClick={handleLogout}
-              className="flex gap-2 bg-accent2 text-black uppercase font-bold rounded-full px-4 py-2 items-center my-4 tracking-wide"
+              className="flex gap-2 bg-accent1 text-black uppercase font-bold rounded-full px-4 py-2 items-center my-4 tracking-wide"
               style={{ whiteSpace: "nowrap", overflow: "hidden" }}
             >
               Log Out

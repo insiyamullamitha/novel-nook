@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { saveOrderToFirestore } from "./FirebaseApp";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -21,10 +22,16 @@ const CARD_OPTIONS = {
   },
 };
 
-export default function PaymentForm({ price }) {
+export default function PaymentForm({ price, basketItems, user }) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+
+  const order = {
+    user: user.email,
+    items: basketItems,
+    price: price,
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,7 +84,7 @@ export default function PaymentForm({ price }) {
           </button>
         </form>
       ) : (
-        <Navigate to="/myorders" />
+        (saveOrderToFirestore(user.uid, order), (<Navigate to="/myorders" />))
       )}
     </div>
   );
