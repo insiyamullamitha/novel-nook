@@ -8,6 +8,7 @@ import { useBasket, calculateBasketCount } from "../components/BasketContext";
 import DiscountCodeInput from "../components/DiscountCodeInput";
 import BasketIcon from "../icons/BasketIcon";
 import { Link } from "react-router-dom";
+import StripeContainer from "../components/StripeContainer";
 
 export default function Basket({ user }) {
   const { state } = useBasket();
@@ -18,6 +19,7 @@ export default function Basket({ user }) {
   );
   const [shippingPrice, setShippingPrice] = useState(3.99);
   const basketCount = calculateBasketCount(state.items);
+  const [checkout, setCheckout] = useState(false);
 
   useEffect(() => {
     if (!emptyBasket) {
@@ -31,7 +33,7 @@ export default function Basket({ user }) {
 
       setBasketItems(itemsArray);
     }
-    setPrice(`£${(basketCount * 8.99).toFixed(2)}`);
+    setPrice((basketCount * 8.99).toFixed(2));
     setShippingPrice(basketCount * 8.99 > 25 ? 0 : 3.99);
   }, [state.items, emptyBasket, basketCount]);
 
@@ -77,7 +79,7 @@ export default function Basket({ user }) {
             </div>
             <div className="flex items-center justify-between mt-4 tagline-font">
               <p className="text-m">Subtotal:</p>
-              <p className="text-m">{price}</p>
+              <p className="text-m">£{price}</p>
             </div>
             <div className="flex items-center justify-between mt-4 tagline-font">
               <p className="text-m">Shipping (Free over £25):</p>
@@ -91,18 +93,36 @@ export default function Basket({ user }) {
                 £{(basketCount * 8.99 + shippingPrice).toFixed(2)}
               </p>
             </div>
-            <DiscountCodeInput />
-            <div className="flex items-center mt-4">
-              <button
-                className="bg-black flex gap-2 text-white uppercase font-semibold rounded-full px-6 py-2  mt-4 mb-12"
-                style={{ whiteSpace: "nowrap", overflow: "hidden" }}
-              >
-                <span>Checkout</span>
-                <span>
+            {!checkout ? (
+              <>
+                <DiscountCodeInput />
+                <div className="flex items-center mt-4">
+                  <button
+                    className="bg-black flex gap-2 text-white uppercase font-semibold rounded-full mb-12 px-6 py-2"
+                    style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+                    onClick={() => setCheckout(!checkout)}
+                  >
+                    Checkout
+                    <span>
+                      <MoneyIcon />
+                    </span>
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div>
+                <StripeContainer
+                  price={(basketCount * 8.99 + shippingPrice).toFixed(2)}
+                />
+                <button
+                  onClick={() => setCheckout(!checkout)}
+                  className="bg-black flex gap-2 mx-auto text-white uppercase font-semibold rounded-full px-6 py-2 mb-12"
+                >
+                  Cancel
                   <MoneyIcon />
-                </span>
-              </button>
-            </div>
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
