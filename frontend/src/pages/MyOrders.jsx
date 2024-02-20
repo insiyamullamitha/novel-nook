@@ -13,18 +13,17 @@ export default function MyOrders({ user }) {
       try {
         const fetchedOrders = await getOrders(user.email);
         setOrders(fetchedOrders);
-        console.log("Orders fetched:", fetchedOrders);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
     };
 
     fetchOrders();
-  }, [user.email]);
+  }, [user.email, setOrders]);
 
   return (
     <>
-      <div className=" py-4 bg-secondary shadow-xl">
+      <div className="py-4 bg-secondary shadow-xl">
         <div className="my-4">
           <Navbar user={user} />
         </div>
@@ -35,7 +34,7 @@ export default function MyOrders({ user }) {
           <h1 className="text-4xl uppercase tagline-font font-bold text-secondary">
             My Orders
           </h1>
-          <div>
+          <div className="mb-16">
             {orders.length === 0 ? (
               <p className="text-xl tagline-font mt-4">
                 You have no orders yet.

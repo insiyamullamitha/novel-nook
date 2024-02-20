@@ -7,12 +7,13 @@ import { getImageFile } from "./FirebaseApp";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function BookItem({ bookTitle }) {
+export default function BookItem({ book }) {
   const [quantity, setQuantity] = useState(1);
   const [addedToBasket, setAddedToBasket] = useState(false);
   const { addToBasket } = useBasket();
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(true);
+  const bookTitle = book.Title;
 
   useEffect(() => {
     setLoading(true);
@@ -53,7 +54,7 @@ export default function BookItem({ bookTitle }) {
   return (
     <div className="bg-transparent text-black border-2 border-black p-4 rounded-lg text-center hover:shadow-md hover:shadow-black/25 over:bg-white transition-all">
       <div className="text-center">
-        <div className="flex flex-row mt-1 mb-4 h-9 items-center justify-center">
+        <div className="flex flex-row mt-1 h-9 items-center justify-center">
           <p className="tagline-font mb-0 items-center font-bold capitalize text-m">
             {bookTitle.replace(/_/g, " ")}
           </p>
@@ -66,6 +67,9 @@ export default function BookItem({ bookTitle }) {
             </button>
           </Link>
         </div>
+        <p className="tagline-font mb-1 text-accent1 items-center font-bold capitalize text-xs">
+          {book.Author}
+        </p>
         {loading ? (
           <div>Loading...</div>
         ) : (

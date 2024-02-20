@@ -67,7 +67,7 @@ export default function Basket({ user }) {
               </Link>
             </>
           ) : (
-            <div>{basketItems}</div>
+            <div className="mb-12">{basketItems}</div>
           )}
         </div>
         {!emptyBasket && (

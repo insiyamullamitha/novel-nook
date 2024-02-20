@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import BasketIcon from "../icons/BasketIcon";
 import { useBasket, calculateBasketCount } from "./BasketContext";
 
@@ -17,65 +17,60 @@ export default function Navbar({ user }) {
       style={{ whiteSpace: "nowrap", overflow: "hidden" }}
     >
       <div className="flex justify-between items-center flex-wrap sm:flex-no-wrap">
-        <Link to="/" className="logo-font text-2xl text-black">
+        <NavLink to="/" className="logo-font text-2xl text-black">
           Novel Nook
-        </Link>
+        </NavLink>
         <ul className="flex space-x-4 items-center uppercase">
           <li>
-            <Link
+            <NavLink
               to="/"
-              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                "/"
-              )}`}
+              className="tracking-wide nav-font text-black uppercase hover:font-bold"
+              activeclassname="font-bold"
             >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/books"
-              className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                "/books"
-              )}`}
+              className="tracking-wide nav-font text-black uppercase hover:font-bold"
+              activeclassname="font-bold"
             >
               Books
-            </Link>
+            </NavLink>
           </li>
           {!user && (
             <>
               <li>
-                <Link
+                <NavLink
                   to="/login"
-                  className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                    "/login"
-                  )}`}
+                  className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                  activeclassname="font-bold"
                 >
                   Log In
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
                   to="/signup"
-                  className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                    "/signup"
-                  )}`}
+                  className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                  activeclassname="font-bold"
                 >
                   Sign Up
-                </Link>
+                </NavLink>
               </li>
             </>
           )}
           {user && (
             <>
               <li>
-                <Link
+                <NavLink
                   to="/myprofile"
-                  className={`tracking-wide nav-font text-black uppercase hover:font-bold active:font-bold ${isActive(
-                    "/myprofile"
-                  )}`}
+                  className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                  activeclassname="font-bold"
                 >
                   Profile
-                </Link>
+                </NavLink>
               </li>
             </>
           )}

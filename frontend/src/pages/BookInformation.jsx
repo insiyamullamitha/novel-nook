@@ -7,6 +7,9 @@ import Footer from "../components/Footer";
 import { useBasket } from "../components/BasketContext";
 import BasketIcon from "../icons/BasketIcon";
 import TickIcon from "../icons/TickIcon";
+import StarRating from "../components/StarRating";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default function BookInformation({ user }) {
   const { bookTitle } = useParams();
@@ -25,6 +28,7 @@ export default function BookInformation({ user }) {
   const [descriptionFetched, setDescriptionFetched] = useState(false);
   const { addToBasket } = useBasket();
   const [addedToBasket, setAddedToBasket] = useState(false);
+  const [writeReview, setWriteReview] = useState(false);
 
   const increaseQuantity = () => {
     if (quantity < 100) {
@@ -126,16 +130,26 @@ export default function BookInformation({ user }) {
       <TagLineStrip className="shadow-xl" />
       <div className="container mx-auto sm:mx-0 mt-8 p-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8">
         {bookImagePath && (
-          <div className="relative mx-auto">
+          <div className="relative text-2xl mx-auto">
             <img
-              className="max-h-80 rounded-md shadow-md"
+              className="max-h-80 mb-4 rounded-md shadow-md"
               src={bookImagePath}
               alt={bookTitle}
             />
+            <StarRating
+              rating={3}
+              className="flex items-center justify-center text-center"
+            />
+            <button
+              className="mt-4 w-55 mx-auto justify-center items-center flex gap-2 bg-black mb-8 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 hover:font-bold hover:bg-gray-800"
+              onClick={() => setWriteReview(!writeReview)}
+            >
+              Write Review <FontAwesomeIcon icon={faStar} />
+            </button>
           </div>
         )}
         <div className="flex flex-col justify-start">
-          <h1 className="text-3xl tagline-font uppercase text-black font-bold mb-4">
+          <h1 className="text-3xl tagline-font uppercase text-accent2 font-bold mb-4">
             {bookTitle.replace(/_/g, " ")}
           </h1>
           <div className="description-container">
@@ -156,6 +170,7 @@ export default function BookInformation({ user }) {
           <p className="text-black tagline-font">Author: {bookAuthor}</p>
           <p className="text-black tagline-font">ISBN: {ISBN}</p>
           <p className="text-black tagline-font">Price: £8.99</p>
+          <p className="text-accent1 mt-4 tagline-font">Currently in stock</p>
           <div className="flex items-center gap-6 mt-4">
             <div className="flex bg-white items-center rounded-full">
               <button

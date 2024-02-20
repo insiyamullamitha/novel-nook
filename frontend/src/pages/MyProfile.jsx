@@ -4,7 +4,6 @@ import Footer from "../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import OrderIcon from "../icons/OrderIcon";
 import UserIcon from "../icons/UserIcon";
-import { useEffect } from "react";
 import { auth } from "../components/FirebaseApp";
 
 export default function MyProfile({ user, setUser }) {
@@ -42,7 +41,7 @@ export default function MyProfile({ user, setUser }) {
             <p className="text-black">
               <span className="text-secondary">Email:</span>
               <span className="ml-2">
-                <a href="mailto: test@example.com">{user.email}</a>
+                <a href={user.email}>{user.email}</a>
               </span>
             </p>
           </div>

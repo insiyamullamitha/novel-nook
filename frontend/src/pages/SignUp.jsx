@@ -52,7 +52,7 @@ export default function SignUp({ user, setUser }) {
             <h1 className="text-secondary tagline-font uppercase text-4xl mb-4">
               Sign Up
             </h1>
-            <p className="text-black">
+            <p className="text-black tagline-font">
               Welcome to Novel Nook! Sign up to create an account and start
               shopping for your favourite books.
             </p>

@@ -85,9 +85,7 @@ export const getOrders = async (uid) => {
     const ordersCol = collection(db, "Order");
     const orderSnapshot = await getDocs(ordersCol);
     const orderList = orderSnapshot.docs.map((doc) => doc.data());
-    console.log("Orders fetched:", orderList);
     const userOrders = orderList.filter((order) => order.user === uid);
-    console.log("User orders:", userOrders);
     return userOrders;
   } catch (error) {
     console.error("Error getting orders", error);
