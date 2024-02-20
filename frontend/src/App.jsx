@@ -38,7 +38,10 @@ function App() {
           path="/books/:bookTitle"
           element={<BookInformation user={user} />}
         />
-        <Route path="/basket" element={<Basket user={user} />} />
+        <Route
+          path="/basket"
+          element={user ? <Basket user={user} /> : <Navigate to="/login" />}
+        />
         <Route
           path="/login"
           element={
