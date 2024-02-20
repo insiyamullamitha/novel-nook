@@ -12,7 +12,12 @@ export default function MyOrders({ user }) {
     const fetchOrders = async () => {
       try {
         const fetchedOrders = await getOrders(user.email);
-        setOrders(fetchedOrders);
+        const sortedOrders = fetchedOrders.sort((a, b) => {
+          const dateA = formatDate(a.date);
+          const dateB = formatDate(b.date);
+          return dateB - dateA;
+        });
+        setOrders(sortedOrders);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
@@ -20,6 +25,11 @@ export default function MyOrders({ user }) {
 
     fetchOrders();
   }, [user.email, setOrders]);
+
+  const formatDate = (dateString) => {
+    const [day, month, year] = dateString.split("/");
+    return new Date(year, month - 1, day).getTime();
+  };
 
   return (
     <>

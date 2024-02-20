@@ -30,6 +30,7 @@ export default function PaymentForm({ price, basketItems, user }) {
   const { clearBasket } = useBasket();
 
   const handlePaymentSuccess = () => {
+    alert("Payment successful. Thank you for your order!");
     clearBasket();
   };
 
@@ -95,7 +96,7 @@ export default function PaymentForm({ price, basketItems, user }) {
             </div>
           </div>
           <button
-            className="bg-accent1 uppercase mx-auto flex text-white py-2 px-5 rounded-full"
+            className="bg-accent1 hover:bg-success uppercase mx-auto flex text-white py-2 px-5 rounded-full"
             onClick={handleSubmit}
           >
             Pay Now
