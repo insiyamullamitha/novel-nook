@@ -97,7 +97,7 @@ export default function Basket({ user }) {
             </div>
             {!checkout ? (
               <>
-                <DiscountCodeInput />
+                z
                 <div className="flex items-center mt-4">
                   <button
                     className="bg-black flex gap-2 text-white uppercase font-semibold rounded-full mb-12 px-6 py-2"

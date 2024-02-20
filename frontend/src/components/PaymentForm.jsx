@@ -72,6 +72,7 @@ export default function PaymentForm({ price, basketItems, user }) {
       }
     } else {
       console.log(error.message);
+      alert(error.message);
     }
   };
 
