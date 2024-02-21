@@ -3,7 +3,10 @@ import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
 import Footer from "../components/Footer";
 import Right from "../icons/Right";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth, saveUserDataToFirestore } from "../components/FirebaseApp";
 import { useState } from "react";
 
@@ -29,6 +32,9 @@ export default function SignUp({ user, setUser }) {
         uid: userCredential.user.uid,
         fullName: fullName,
         email: email,
+      });
+      sendEmailVerification(auth.currentUser).then(() => {
+        console.log("Email verification sent");
       });
       navigate("/profile");
     } catch (error) {

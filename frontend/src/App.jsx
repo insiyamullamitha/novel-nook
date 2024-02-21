@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp";
 import MyProfile from "./pages/MyProfile";
 import MyOrders from "./pages/MyOrders";
 import BookInformation from "./pages/BookInformation";
+import VerifyEmail from "./pages/VerifyEmail";
 import {
   BrowserRouter as Router,
   Routes,
@@ -40,7 +41,15 @@ function App() {
         />
         <Route
           path="/basket"
-          element={user ? <Basket user={user} /> : <Navigate to="/login" />}
+          element={
+            user && user.emailVerified ? (
+              <Basket user={user} />
+            ) : user ? (
+              <VerifyEmail user={user} setUser={setUser} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="/login"
@@ -65,8 +74,10 @@ function App() {
         <Route
           path="/myprofile"
           element={
-            user ? (
+            user && user.emailVerified ? (
               <MyProfile user={user} setUser={setUser} />
+            ) : user ? (
+              <VerifyEmail user={user} setUser={setUser} />
             ) : (
               <Navigate to="/login" />
             )
@@ -74,12 +85,21 @@ function App() {
         />
         <Route
           path="/myorders"
-          element={user ? <MyOrders user={user} /> : <Navigate to="/login" />}
+          element={
+            user && user.emailVerified ? (
+              <MyOrders user={user} />
+            ) : user ? (
+              <VerifyEmail user={user} setUser={setUser} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="*"
           element={user ? <Home user={user} /> : <Navigate to="/login" />}
         />
+        "
       </Routes>
     </Router>
   );
