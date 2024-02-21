@@ -19,7 +19,7 @@ Novel Nook is a full-stack e-commerce platform designed for selling books. The p
 https://github.com/insiyamullamitha/novel-nook.git
 ```
 
-2. Navigate to the frontend and install dependencies:
+2. Navigate to the frontend directory and install dependencies:
 
 ```
 npm install
