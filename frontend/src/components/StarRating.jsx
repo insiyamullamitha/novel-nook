@@ -1,26 +1,16 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
 
-export default function StarRating({ rating }) {
-  const stars = [];
-  for (let i = 0; i < 5; i++) {
-    if (i < rating) {
-      stars.push(
-        <FontAwesomeIcon
-          key={i}
-          className="icon mx-1 text-yellow-500"
-          icon={faStar}
-        />
-      );
-    } else {
-      stars.push(
-        <FontAwesomeIcon
-          key={i}
-          className="icon mx-1 text-white"
-          icon={faStar}
-        />
-      );
-    }
-  }
-  return <div>{stars}</div>;
+export default function StarRating({ value }) {
+  return (
+    <Box
+      sx={{
+        "& > legend": { mt: 2 },
+      }}
+    >
+      <Rating name="read-only" value={3} readOnly />
+    </Box>
+  );
 }

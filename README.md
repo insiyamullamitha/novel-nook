@@ -4,8 +4,6 @@ Novel Nook is a full-stack e-commerce platform designed for selling books. The p
 
 ## Getting Started 🚀
 
-1. Clone the repository:
-
 ### Prerequisites 🎓
 
 - Node.js
@@ -56,39 +54,42 @@ node index.js
 ```
 
 ## Features ✨
-* 📚 **Book Browsing:** Explore a library of books covering various genres
-* 🛒 **User-Friendly Shopping Cart:** Easily add, remove, and update items in your shopping cart
-* 🌐 **Google Books API:** Retrieve and display detailed information about each book by fetching data from the Google Books API
-* 💳 **Secure Online Payments:** Utilise secure payment methods, including Stripe integration
-* 📖 **User Profiles:** Create and manage your user profile with personalised settings
-* 🧑‍💻 **Full-Stack Technology:** Built with React.js and Firebase for a robust and scalable application
+
+- 📚 **Book Browsing:** Explore a library of books covering various genres
+- 🛒 **User-Friendly Shopping Cart:** Easily add, remove, and update items in your shopping cart
+- 🌐 **Google Books API:** Retrieve and display detailed information about each book by fetching data from the Google Books API
+- 💳 **Secure Online Payments:** Utilise secure payment methods, including Stripe integration
+- 📖 **User Profiles:** Create and manage your user profile with personalised settings
+- 🧑‍💻 **Full-Stack Technology:** Built with React.js and Firebase for a robust and scalable application
 
 ## Technologies 🛠️
 
 - **Front-end:**
-  - React.js
+
+  - React.js and Vite
   - Tailwind CSS
 
 - **Back-end:**
+
   - Firebase (Authentication, Firestore)
   - Node.js (for handling Stripe pay ments)
 
 - **Payment Processing:**
   - Stripe
- 
+
 ## What I Learned 🧠
 
-* 🔥 Integration of Firebase for user authentication and data storage
-* 💳 Implementation of a backend server and online payment processing using Stripe
-* 🎨 Front-end design and styling using React.js and Tailwind CSS
-* 📝 State management with React Context
+- 🔥 Integration of Firebase for user authentication and data storage
+- 💳 Implementation of a backend server and online payment processing using Stripe
+- 🎨 Front-end design and styling using React.js and Tailwind CSS
+- 📝 State management with React Context
 
-## Improvements
+## Improvements 📈
 
-* ⭐️ **Rate and Review:** Allow users to rate and write reviews for books. Enhance the engagement and community aspect of the platform
-* 🔍 **Advanced Search:** Implement advanced search functionality, enabling users to search for books by both genre and title for a more refined search experience
-* 👤 **Admin User Role:** Introduce an admin user role with special privileges, such as managing book listings, user accounts, and monitoring reviews
-* 📚 **Wishlist Feature:** Add a wishlist feature, allowing users to save and track books they are interested in purchasing later
-* 📰 **News and Updates:** Create a section for news and updates, keeping users informed about new arrivals, promotions, and platform enhancements, perhaps tailored based on their wishlist and orders
-* 💬 **Chat Support:** Integrate a chat support system for users to get assistance and information in real-time
-* 📱 **Mobile Optimisation:** Enhance the user experience by implementing responsive design and optimising the mobile interface for smoother navigation and improved functionality on various devices
+- ⭐️ **Rate and Review:** Allow users to rate and write reviews for books. Enhance the engagement and community aspect of the platform
+- 🔍 **Advanced Search:** Implement advanced search functionality, enabling users to search for books by both genre and title for a more refined search experience
+- 👤 **Admin User Role:** Introduce an admin user role with special privileges, such as managing book listings, user accounts, and monitoring reviews
+- 📚 **Wishlist Feature:** Add a wishlist feature, allowing users to save and track books they are interested in purchasing later
+- 📰 **News and Updates:** Create a section for news and updates, keeping users informed about new arrivals, promotions, and platform enhancements, perhaps tailored based on their wishlist and orders
+- 💬 **Chat Support:** Integrate a chat support system for users to get assistance and information in real-time
+- 📱 **Mobile Optimisation:** Enhance the user experience by implementing responsive design and optimising the mobile interface for smoother navigation and improved functionality on various devices

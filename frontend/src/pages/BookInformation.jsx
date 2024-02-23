@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getBook, getImageFile } from "../components/FirebaseApp";
 import Navbar from "../components/Navbar";
@@ -8,8 +8,10 @@ import { useBasket } from "../components/BasketContext";
 import BasketIcon from "../icons/BasketIcon";
 import TickIcon from "../icons/TickIcon";
 import StarRating from "../components/StarRating";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import EmptyStarIcon from "../icons/EmptyStarIcon";
+import ReviewInput from "../components/ReviewInput";
+import { Link } from "react-scroll";
+import ReviewSection from "../components/ReviewSection";
 
 export default function BookInformation({ user }) {
   const { bookTitle } = useParams();
@@ -123,8 +125,8 @@ export default function BookInformation({ user }) {
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="py-4 bg-secondary shadow-xl">
+    <div className="min-h-screen flex flex-col items-center justify-between">
+      <div className="py-4 bg-secondary shadow-xl w-full">
         <Navbar user={user} />
       </div>
       <TagLineStrip className="shadow-xl" />
@@ -136,16 +138,12 @@ export default function BookInformation({ user }) {
               src={bookImagePath}
               alt={bookTitle}
             />
-            <StarRating
-              rating={3}
-              className="flex items-center justify-center text-center"
-            />
-            <button
-              className="mt-4 w-55 mx-auto justify-center items-center flex gap-2 bg-black mb-8 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 hover:font-bold hover:bg-gray-800"
-              onClick={() => setWriteReview(!writeReview)}
-            >
-              Write Review <FontAwesomeIcon icon={faStar} />
-            </button>
+            <StarRating rating={3} className="items-center" />
+            <Link to="review-section" smooth={true} duration={500}>
+              <button className="mt-4 w-55 mx-auto justify-center items-center flex gap-2 bg-black mb-8 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 hover:font-bold hover:bg-gray-800">
+                See Reviews <EmptyStarIcon />
+              </button>
+            </Link>
           </div>
         )}
         <div className="flex flex-col justify-start">
@@ -213,6 +211,22 @@ export default function BookInformation({ user }) {
             </button>
           </div>
         </div>
+      </div>
+      <div
+        id="review-section"
+        className="justify-center mx-auto container w-3/4"
+      >
+        <ReviewSection bookTitle={bookTitle} />
+      </div>
+      <button
+        className="text-black flex gap-2 uppercase bg-accent1 text-sm font-semibold rounded-full px-6 py-2 mb-12 hover:font-bold hover:bg-accent2"
+        onClick={() => setWriteReview(!writeReview)}
+      >
+        Write a Review
+        <EmptyStarIcon />
+      </button>
+      <div className="justify-center flex mx-auto w-1/2 mb-12 container">
+        {writeReview && <ReviewInput bookTitle={bookTitle} />}
       </div>
       <Footer />
     </div>

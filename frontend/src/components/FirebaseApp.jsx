@@ -11,6 +11,9 @@ import {
   setDoc,
   addDoc,
   doc,
+  where,
+  query as firestoreQuery,
+  updateDoc,
 } from "firebase/firestore/lite";
 import { ref, getDownloadURL, getStorage } from "firebase/storage";
 
@@ -90,6 +93,54 @@ export const getOrders = async (uid) => {
   } catch (error) {
     console.error("Error getting orders", error);
     throw error;
+  }
+};
+
+export const saveBookReviewToFirestore = async (bookTitle, review, rating) => {
+  const booksCol = collection(db, "Book");
+  const bookQuery = firestoreQuery(booksCol, where("Title", "==", bookTitle));
+  try {
+    const bookSnapshot = await getDocs(bookQuery);
+    if (!bookSnapshot.empty) {
+      const bookDocRef = doc(db, "Book", bookSnapshot.docs[0].id);
+      const currentReviews = bookSnapshot.docs[0].data().Reviews || [];
+      const updatedReviews = [...currentReviews, { rating, review: review }];
+      const overallRating = Math.ceil(
+        updatedReviews.reduce((sum, review) => sum + review.rating, 0) /
+          updatedReviews.length
+      );
+      await updateDoc(bookDocRef, {
+        Reviews: updatedReviews,
+        OverallRating: overallRating,
+      });
+      alert("Review saved successfully");
+    } else {
+      console.error("Error saving review to firestore: Book not found");
+      alert("Something went wrong. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error saving review to firestore", error);
+    alert("Something went wrong. Please try again.");
+  }
+};
+
+export const getBookReviews = async (bookTitle) => {
+  const booksCol = collection(db, "Book");
+  const query = query(booksCol, where("Title", "==", bookTitle));
+
+  try {
+    const bookSnapshot = await getDocs(query);
+
+    if (!bookSnapshot.empty) {
+      const bookData = bookSnapshot.docs[0].data();
+      return bookData.Reviews || [];
+    } else {
+      console.error("Error getting reviews from firestore: Book not found");
+      return [];
+    }
+  } catch (error) {
+    console.error("Error getting reviews from firestore", error);
+    return [];
   }
 };
 
