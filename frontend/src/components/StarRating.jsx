@@ -1,7 +1,5 @@
-import { useState } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
 
 export default function StarRating({ value }) {
   return (
@@ -10,7 +8,7 @@ export default function StarRating({ value }) {
         "& > legend": { mt: 2 },
       }}
     >
-      <Rating name="read-only" value={value} readOnly />
+      <Rating name="half-rating" precision={0.5} value={value} readOnly />
     </Box>
   );
 }

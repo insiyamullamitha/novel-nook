@@ -99,20 +99,26 @@ export const getOrders = async (uid) => {
 export const saveBookReviewToFirestore = async (bookTitle, review, rating) => {
   const booksCol = collection(db, "Book");
   const bookQuery = firestoreQuery(booksCol, where("Title", "==", bookTitle));
+
   try {
     const bookSnapshot = await getDocs(bookQuery);
+
     if (!bookSnapshot.empty) {
       const bookDocRef = doc(db, "Book", bookSnapshot.docs[0].id);
       const currentReviews = bookSnapshot.docs[0].data().Reviews || [];
       const updatedReviews = [...currentReviews, { rating, review: review }];
-      const overallRating = Math.ceil(
+
+      const rawOverallRating =
         updatedReviews.reduce((sum, review) => sum + review.rating, 0) /
-          updatedReviews.length
-      );
+        updatedReviews.length;
+
+      const overallRating = Math.round(rawOverallRating * 2) / 2;
+
       await updateDoc(bookDocRef, {
         Reviews: updatedReviews,
         OverallRating: overallRating,
       });
+
       alert("Review submitted successfully");
     } else {
       console.error("Error saving review to firestore: Book not found");
@@ -123,6 +129,7 @@ export const saveBookReviewToFirestore = async (bookTitle, review, rating) => {
     alert("Something went wrong. Please try again.");
   }
 };
+
 export const getBookReviews = async (bookTitle) => {
   const booksCol = collection(db, "Book");
   const query = firestoreQuery(booksCol, where("Title", "==", bookTitle));

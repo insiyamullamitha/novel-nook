@@ -150,7 +150,7 @@ export default function BookInformation({ user }) {
               className="items-center justify-center flex mx-auto"
             />
             <Link to="review-section" smooth={true} duration={500}>
-              <button className="mt-4 w-55 mx-auto justify-center items-center flex gap-2 bg-black mb-8 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 hover:font-bold hover:bg-gray-800">
+              <button className="mt-4 w-55 mx-auto justify-center items-center flex gap-2 bg-black mb-4 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 hover:font-bold hover:bg-gray-800">
                 See Reviews <EmptyStarIcon />
               </button>
             </Link>
