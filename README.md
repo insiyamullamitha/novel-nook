@@ -61,6 +61,7 @@ node index.js
 - 💳 **Secure Online Payments:** Utilise secure payment methods, including Stripe integration
 - 📖 **User Profiles:** Create and manage your user profile with personalised settings
 - 🧑‍💻 **Full-Stack Technology:** Built with React.js and Firebase for a robust and scalable application
+- ⭐️ **Rate and Review:** Allow users to rate and write reviews for books, enhancing the engagement and community aspect of the platform
 
 ## Technologies 🛠️
 
@@ -86,7 +87,6 @@ node index.js
 
 ## Improvements 📈
 
-- ⭐️ **Rate and Review:** Allow users to rate and write reviews for books. Enhance the engagement and community aspect of the platform
 - 🔍 **Advanced Search:** Implement advanced search functionality, enabling users to search for books by both genre and title for a more refined search experience
 - 👤 **Admin User Role:** Introduce an admin user role with special privileges, such as managing book listings, user accounts, and monitoring reviews
 - 📚 **Wishlist Feature:** Add a wishlist feature, allowing users to save and track books they are interested in purchasing later
