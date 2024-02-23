@@ -16,10 +16,13 @@ export default function ReviewInput({ bookTitle }) {
     await saveBookReviewToFirestore(bookTitle, review, rating);
     setReview("");
     setRating(5);
+    window.location.reload();
   };
-
   return (
-    <div className="flex text-black text-sm flex-col gap-4">
+    <div
+      className="container max-w-screen-lg px-8 mx-auto flex text-black text-sm flex-col gap-4"
+      style={{ minWidth: "500px" }}
+    >
       <form className="flex flex-col gap-4">
         <ControlledStarRating
           onChange={setRating}

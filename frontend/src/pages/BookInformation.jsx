@@ -12,6 +12,7 @@ import EmptyStarIcon from "../icons/EmptyStarIcon";
 import ReviewInput from "../components/ReviewInput";
 import { Link } from "react-scroll";
 import ReviewSection from "../components/ReviewSection";
+import { getBookRating } from "../components/FirebaseApp";
 
 export default function BookInformation({ user }) {
   const { bookTitle } = useParams();
@@ -31,6 +32,7 @@ export default function BookInformation({ user }) {
   const { addToBasket } = useBasket();
   const [addedToBasket, setAddedToBasket] = useState(false);
   const [writeReview, setWriteReview] = useState(false);
+  const [bookRating, setBookRating] = useState(3);
 
   const increaseQuantity = () => {
     if (quantity < 100) {
@@ -85,6 +87,11 @@ export default function BookInformation({ user }) {
       }
     };
 
+    const fetchRating = async () => {
+      const fetchedRating = await getBookRating(bookTitle);
+      setBookRating(fetchedRating);
+    };
+    fetchRating();
     fetchData();
   }, [bookTitle]);
 
@@ -138,7 +145,10 @@ export default function BookInformation({ user }) {
               src={bookImagePath}
               alt={bookTitle}
             />
-            <StarRating rating={3} className="items-center" />
+            <StarRating
+              value={bookRating}
+              className="items-center justify-center flex mx-auto"
+            />
             <Link to="review-section" smooth={true} duration={500}>
               <button className="mt-4 w-55 mx-auto justify-center items-center flex gap-2 bg-black mb-8 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 hover:font-bold hover:bg-gray-800">
                 See Reviews <EmptyStarIcon />

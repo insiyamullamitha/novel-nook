@@ -10,7 +10,7 @@ export default function StarRating({ value }) {
         "& > legend": { mt: 2 },
       }}
     >
-      <Rating name="read-only" value={3} readOnly />
+      <Rating name="read-only" value={value} readOnly />
     </Box>
   );
 }

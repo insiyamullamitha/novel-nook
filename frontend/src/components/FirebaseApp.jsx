@@ -113,7 +113,7 @@ export const saveBookReviewToFirestore = async (bookTitle, review, rating) => {
         Reviews: updatedReviews,
         OverallRating: overallRating,
       });
-      alert("Review saved successfully");
+      alert("Review submitted successfully");
     } else {
       console.error("Error saving review to firestore: Book not found");
       alert("Something went wrong. Please try again.");
@@ -123,10 +123,9 @@ export const saveBookReviewToFirestore = async (bookTitle, review, rating) => {
     alert("Something went wrong. Please try again.");
   }
 };
-
 export const getBookReviews = async (bookTitle) => {
   const booksCol = collection(db, "Book");
-  const query = query(booksCol, where("Title", "==", bookTitle));
+  const query = firestoreQuery(booksCol, where("Title", "==", bookTitle));
 
   try {
     const bookSnapshot = await getDocs(query);
@@ -141,6 +140,24 @@ export const getBookReviews = async (bookTitle) => {
   } catch (error) {
     console.error("Error getting reviews from firestore", error);
     return [];
+  }
+};
+
+export const getBookRating = async (bookTitle) => {
+  const booksCol = collection(db, "Book");
+  const bookQuery = firestoreQuery(booksCol, where("Title", "==", bookTitle));
+  try {
+    const bookSnapshot = await getDocs(bookQuery);
+    if (!bookSnapshot.empty) {
+      const bookData = bookSnapshot.docs[0].data();
+      return bookData.OverallRating || 0;
+    } else {
+      console.error("Error getting rating from firestore: Book not found");
+      return 0;
+    }
+  } catch (error) {
+    console.error("Error getting rating from firestore", error);
+    return 0;
   }
 };
 
