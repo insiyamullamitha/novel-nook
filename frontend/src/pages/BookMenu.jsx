@@ -6,13 +6,11 @@ import Footer from "../components/Footer";
 import BookItem from "../components/BookItem";
 import { getBooks } from "../components/FirebaseApp";
 import SearchBar from "../components/SearchBar";
-import FilterIcon from "../icons/FilterIcon";
 
 export default function BookMenu({ user }) {
   const [bookList, setBookList] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filterMenu, setFilterMenu] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +53,7 @@ export default function BookMenu({ user }) {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 my-8 container mx-auto px-8">
           {(searchResults.length > 0 ? searchResults : bookList).map((book) => (
-            <BookItem key={book.Title} book={book} />
+            <BookItem key={book.Title} book={book} user={user} />
           ))}
         </div>
       )}

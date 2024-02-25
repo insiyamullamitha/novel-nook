@@ -87,12 +87,6 @@ export default function BookInformation({ user }) {
         const fetchedBook = await getBook(bookTitle);
         setBook(fetchedBook);
 
-        const description =
-          fetchedBook && fetchedBook.Description
-            ? fetchedBook.Description
-            : "No Description available for this book.";
-        setBookDescription(description);
-
         const author =
           fetchedBook && fetchedBook.Author
             ? fetchedBook.Author
@@ -108,6 +102,7 @@ export default function BookInformation({ user }) {
         if (user) {
           const inWishlist = await checkIfInWishlist(user.uid, bookTitle);
           setAddedToWishlist(inWishlist);
+          setLoading(false);
         }
 
         setLoading(false);
@@ -121,9 +116,10 @@ export default function BookInformation({ user }) {
       const fetchedRating = await getBookRating(bookTitle);
       setBookRating(fetchedRating);
     };
+
     fetchRating();
     fetchData();
-  }, [bookTitle, addedToWishlist]);
+  }, [bookTitle, user]);
 
   useEffect(() => {
     const fetchBookDescription = async (ISBN) => {
@@ -143,6 +139,7 @@ export default function BookInformation({ user }) {
           const description = data.items[0].volumeInfo.description;
           setBookDescription(description);
         } else {
+          setBookDescription("No Description available for this book.");
           throw new Error("No book found");
         }
       } catch (error) {
@@ -162,7 +159,10 @@ export default function BookInformation({ user }) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between">
+    <div
+      className="min-h-screen flex flex-col items-center justify-between"
+      style={{ overflowX: "hidden" }}
+    >
       <div className="py-4 bg-secondary shadow-xl w-full">
         <Navbar user={user} />
       </div>

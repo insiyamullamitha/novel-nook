@@ -1,43 +1,56 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useBasket } from "./BasketContext";
 import BasketIcon from "../icons/BasketIcon";
 import TickIcon from "../icons/TickIcon";
 import InfoIcon from "../icons/InfoIcon";
-import { getImageFile } from "./FirebaseApp";
-import { useEffect } from "react";
+import {
+  getImageFile,
+  checkIfInWishlist,
+  addToWishlist,
+  deleteFromWishlist,
+} from "./FirebaseApp";
 import { Link } from "react-router-dom";
+import HeartIcon from "../icons/HeartIcon";
+import RedHeartIcon from "../icons/RedHeartIcon";
 
-export default function BookItem({ book }) {
+export default function BookItem({ book, user }) {
   const [quantity, setQuantity] = useState(1);
   const [addedToBasket, setAddedToBasket] = useState(false);
   const { addToBasket } = useBasket();
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [addedToWishlist, setAddedToWishlist] = useState(false);
   const bookTitle = book.Title;
 
   const imageRef = useRef(null);
 
   useEffect(() => {
-    setLoading(true);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
 
-    if (imageRef.current) {
-      setImage(imageRef.current);
-      setLoading(false);
-      return;
-    }
+        if (imageRef.current) {
+          setImage(imageRef.current);
+        } else {
+          const url = await getImageFile(bookTitle);
+          setImage(url);
+          imageRef.current = url;
+        }
 
-    getImageFile(bookTitle)
-      .then((url) => {
-        setImage(url);
-        imageRef.current = url;
+        if (user) {
+          const inWishlist = await checkIfInWishlist(user.uid, bookTitle);
+          setAddedToWishlist(inWishlist);
+        }
+
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(`Error fetching image for ${bookTitle}`, error);
-        setImage(null);
         setLoading(false);
-      });
-  }, [bookTitle]);
+      }
+    };
+
+    fetchData();
+  }, [bookTitle, user]);
 
   const increaseQuantity = () => {
     if (quantity < 100) {
@@ -48,6 +61,26 @@ export default function BookItem({ book }) {
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+    }
+  };
+
+  const handleWishlistButton = () => {
+    if (user) {
+      if (addedToWishlist) {
+        if (
+          window.confirm(
+            "Are you sure you want to remove this book from your wishlist?"
+          )
+        ) {
+          deleteFromWishlist(user.uid, bookTitle);
+          setAddedToWishlist(false);
+        }
+      } else {
+        addToWishlist(user.uid, bookTitle);
+        setAddedToWishlist(true);
+      }
+    } else {
+      alert("Please login to add to wishlist");
     }
   };
 
@@ -111,6 +144,9 @@ export default function BookItem({ book }) {
           >
             +
           </button>
+        </div>
+        <div className="text-black font-bold" onClick={handleWishlistButton}>
+          {addedToWishlist ? <RedHeartIcon /> : <HeartIcon />}
         </div>
       </div>
       <button

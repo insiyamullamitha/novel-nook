@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { getUserWishlist } from "../components/FirebaseApp";
 import Footer from "../components/Footer";
 
-export default function MyWishlist(user) {
+export default function MyWishlist({ user }) {
   const [likedBooks, setLikedBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -56,7 +56,7 @@ export default function MyWishlist(user) {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 my-8 container mx-auto px-8">
           {likedBooks.map((book) => (
-            <BookItem key={book.Title} book={book} />
+            <BookItem key={book.Title} book={book} user={user} />
           ))}
         </div>
       )}
