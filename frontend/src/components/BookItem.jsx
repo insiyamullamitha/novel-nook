@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useRef } from "react";
 import { useBasket } from "./BasketContext";
 import BasketIcon from "../icons/BasketIcon";
 import TickIcon from "../icons/TickIcon";
@@ -15,11 +15,22 @@ export default function BookItem({ book }) {
   const [loading, setLoading] = useState(true);
   const bookTitle = book.Title;
 
+  const imageRef = useRef(null);
+
   useEffect(() => {
     setLoading(true);
+
+    // Check if the image URL is already fetched and stored
+    if (imageRef.current) {
+      setImage(imageRef.current);
+      setLoading(false);
+      return;
+    }
+
     getImageFile(bookTitle)
       .then((url) => {
         setImage(url);
+        imageRef.current = url; // Store the URL in the ref
         setLoading(false);
       })
       .catch((error) => {

@@ -21,7 +21,7 @@ export default function ReviewSection({ bookTitle }) {
   return (
     <section className="mt-4 mb-12">
       <div className="container max-w-screen-lg px-8 text-center">
-        <h2 className="text-4xl font-bold mb-8 uppercase tagline-font text-accent3">
+        <h2 className="text-4xl font-bold mb-8 uppercase tagline-font text-secondary">
           Reviews
         </h2>
         {reviews.length === 0 ? (
@@ -32,11 +32,11 @@ export default function ReviewSection({ bookTitle }) {
           <div className="flex flex-col justify-center gap-6">
             {reviews.map((reviewData, index) => (
               <div
-                className="flex flex-col bg-accent2 p-4 rounded-lg items-center shadow-lg"
+                className="flex flex-col bg-white p-4 rounded-full items-center shadow-lg"
                 key={index}
               >
                 <StarRating value={reviewData.rating} />
-                <p className="text-m text-white tagline-font font-semibold text-center">
+                <p className="text-m text-black tagline-font font-semibold text-center">
                   {reviewData.review}
                 </p>
               </div>

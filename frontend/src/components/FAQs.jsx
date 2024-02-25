@@ -10,7 +10,7 @@ export default function FAQs() {
         <FAQItem
           question={"Can I change or amend an order?"}
           information={
-            "Once an order has been placed, we cannot make changes to the billing address, payment method, delivery address or delivery method. If you would like to amend these aspects of your order, we recommend cancelling that order in order to place it again after making the required changes."
+            "Once an order has been placed, we cannot guarantee any changes to the billing address, payment method, delivery address or delivery method. If you need to make changes, please contact us within 24 hours of placing your order and we will try our best."
           }
         />
         <FAQItem
