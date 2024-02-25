@@ -51,7 +51,7 @@ export default function LogIn({ user, setUser }) {
   };
 
   if (user) {
-    return <Navigate to="/" />;
+    return navigate("/profile");
   }
 
   return (

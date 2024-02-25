@@ -5,6 +5,7 @@ import EnvelopeIcon from "../icons/EnvelopeIcon";
 import UserIcon from "../icons/UserIcon";
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../components/FirebaseApp";
+import { useEffect } from "react";
 
 export default function VerifyEmail({ user, setUser }) {
   const resendEmailVerification = () => {
@@ -23,6 +24,10 @@ export default function VerifyEmail({ user, setUser }) {
         console.error(error);
       });
   };
+
+  useEffect(() => {
+    window.location.reload();
+  }, []);
 
   return (
     <>
