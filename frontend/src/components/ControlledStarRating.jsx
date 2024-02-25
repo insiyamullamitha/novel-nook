@@ -3,7 +3,7 @@ import Rating from "@mui/material/Rating";
 import { useState } from "react";
 
 export default function ControlledStarRating({ onChange }) {
-  const [value, setValue] = useState(3);
+  const [value, setValue] = useState(2.5);
 
   return (
     <Box

@@ -193,7 +193,7 @@ export const addToWishlist = async (uid, bookTitle) => {
     if (userSnapshot.exists()) {
       const userWishlist = userSnapshot.data()?.Wishlist || [];
       if (userWishlist.includes(bookTitle)) {
-        alert("Book already in wishlist");
+        alert("This book is already in your wishlist");
         return;
       }
       const updatedWishlist = [...userWishlist, bookTitle];

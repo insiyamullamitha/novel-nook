@@ -25,7 +25,7 @@ export default function ReviewSection({ bookTitle }) {
           Reviews
         </h2>
         {reviews.length === 0 ? (
-          <p className="text-m text-black">
+          <p className="text-m text-black tagline-font">
             No reviews yet. Be the first to rate this book!
           </p>
         ) : (

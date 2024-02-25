@@ -80,7 +80,7 @@ export default function BookItem({ book, user }) {
         setAddedToWishlist(true);
       }
     } else {
-      alert("Please login to add to wishlist");
+      alert("You must be logged in to add to your wishlist");
     }
   };
 
@@ -95,7 +95,7 @@ export default function BookItem({ book, user }) {
   };
 
   return (
-    <div className="bg-transparent text-black border-2 border-black p-4 rounded-lg text-center hover:shadow-md hover:shadow-black/25 over:bg-white transition-all">
+    <div className="bg-transparent text-black border-2 border-black p-4 rounded-lg text-center hover:shadow-md hover:shadow-2xl transition-all">
       <div className="text-center">
         <div className="flex flex-row mt-1 h-9 items-center justify-center">
           <p className="tagline-font mb-0 items-center font-bold capitalize text-m">
@@ -119,7 +119,7 @@ export default function BookItem({ book, user }) {
           <img
             src={image}
             alt={`${bookTitle} cover`}
-            className="max-w-24 block justify-center m-auto"
+            className="max-w-24 block justify-center m-auto rounded-md shadow-md"
           />
         )}
       </div>

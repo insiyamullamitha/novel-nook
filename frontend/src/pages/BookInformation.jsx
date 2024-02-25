@@ -77,7 +77,7 @@ export default function BookInformation({ user }) {
         setAddedToWishlist(true);
       }
     } else {
-      alert("Please login to add to wishlist");
+      alert("You must be logged in to add to your wishlist");
     }
   };
 
@@ -187,7 +187,7 @@ export default function BookInformation({ user }) {
           </div>
         )}
         <div className="flex flex-col justify-start">
-          <div className="flex flex-row gap-4 mt-4 h-9 items-center text-secondary">
+          <div className="flex flex-row gap-4 mt-4 h-9 mb-4 items-center text-secondary">
             <h1 className="text-3xl tagline-font uppercase text-accent2 font-bold">
               {bookTitle.replace(/_/g, " ")}
             </h1>
