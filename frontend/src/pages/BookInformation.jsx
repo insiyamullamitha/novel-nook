@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getBook, getImageFile } from "../components/FirebaseApp";
+import {
+  getBook,
+  getImageFile,
+  getBookRating,
+  addToWishlist,
+  checkIfInWishlist,
+  deleteFromWishlist,
+} from "../components/FirebaseApp";
 import Navbar from "../components/Navbar";
 import TagLineStrip from "../components/TagLineStrip";
 import Footer from "../components/Footer";
@@ -12,7 +19,8 @@ import EmptyStarIcon from "../icons/EmptyStarIcon";
 import ReviewInput from "../components/ReviewInput";
 import { Link } from "react-scroll";
 import ReviewSection from "../components/ReviewSection";
-import { getBookRating } from "../components/FirebaseApp";
+import HeartIcon from "../icons/HeartIcon";
+import RedHeartIcon from "../icons/RedHeartIcon";
 
 export default function BookInformation({ user }) {
   const { bookTitle } = useParams();
@@ -33,6 +41,7 @@ export default function BookInformation({ user }) {
   const [addedToBasket, setAddedToBasket] = useState(false);
   const [writeReview, setWriteReview] = useState(false);
   const [bookRating, setBookRating] = useState(3);
+  const [addedToWishlist, setAddedToWishlist] = useState(false);
 
   const increaseQuantity = () => {
     if (quantity < 100) {
@@ -54,6 +63,22 @@ export default function BookInformation({ user }) {
       setAddedToBasket(false);
       setQuantity(1);
     }, 3000);
+  };
+
+  const handleWishlistButton = () => {
+    if (user) {
+      if (addedToWishlist) {
+        confirm(
+          "Are you sure you want to remove this book from your wishlist?"
+        ) && deleteFromWishlist(user.uid, bookTitle);
+        setAddedToWishlist(false);
+      } else {
+        addToWishlist(user.uid, bookTitle);
+        setAddedToWishlist(true);
+      }
+    } else {
+      alert("Please login to add to wishlist");
+    }
   };
 
   useEffect(() => {
@@ -80,6 +105,11 @@ export default function BookInformation({ user }) {
         const imagePath = await getImageFile(bookTitle);
         setBookImagePath(imagePath);
 
+        if (user) {
+          const inWishlist = await checkIfInWishlist(user.uid, bookTitle);
+          setAddedToWishlist(inWishlist);
+        }
+
         setLoading(false);
       } catch (error) {
         console.error("Error fetching book information", error);
@@ -93,7 +123,7 @@ export default function BookInformation({ user }) {
     };
     fetchRating();
     fetchData();
-  }, [bookTitle]);
+  }, [bookTitle, addedToWishlist]);
 
   useEffect(() => {
     const fetchBookDescription = async (ISBN) => {
@@ -157,9 +187,17 @@ export default function BookInformation({ user }) {
           </div>
         )}
         <div className="flex flex-col justify-start">
-          <h1 className="text-3xl tagline-font uppercase text-accent2 font-bold mb-4">
-            {bookTitle.replace(/_/g, " ")}
-          </h1>
+          <div className="flex flex-row gap-4 mt-4 h-9 items-center text-secondary">
+            <h1 className="text-3xl tagline-font uppercase text-accent2 font-bold">
+              {bookTitle.replace(/_/g, " ")}
+            </h1>
+            <div
+              className="text-black font-bold"
+              onClick={handleWishlistButton}
+            >
+              {addedToWishlist ? <RedHeartIcon /> : <HeartIcon />}
+            </div>
+          </div>
           <div className="description-container">
             <p className="text-gray-700 tagline-font mb-4">
               {showMore

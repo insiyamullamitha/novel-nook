@@ -62,6 +62,7 @@ node index.js
 - 📖 **User Profiles:** Create and manage your user profile with personalised settings
 - 🧑‍💻 **Full-Stack Technology:** Built with React.js and Firebase for a robust and scalable application
 - ⭐️ **Rate and Review:** Allow users to rate and write reviews for books, enhancing the engagement and community aspect of the platform
+- 📚 **Wishlist Feature:** Enable users to save and track books they are interested in purchasing later
 
 ## Technologies 🛠️
 
@@ -87,9 +88,9 @@ node index.js
 
 ## Improvements 📈
 
-- 🔍 **Advanced Search:** Implement advanced search functionality, enabling users to search for books by both genre and title for a more refined search experience
+- 🔍 **Advanced Search:** Implement advanced search functionality, enabling users to filter books by genre and other characteristics for a more refined search experience
 - 👤 **Admin User Role:** Introduce an admin user role with special privileges, such as managing book listings, user accounts, and monitoring reviews
-- 📚 **Wishlist Feature:** Add a wishlist feature, allowing users to save and track books they are interested in purchasing later
 - 📰 **News and Updates:** Create a section for news and updates, keeping users informed about new arrivals, promotions, and platform enhancements, perhaps tailored based on their wishlist and orders
 - 💬 **Chat Support:** Integrate a chat support system for users to get assistance and information in real-time
 - 📱 **Mobile Optimisation:** Enhance the user experience by implementing responsive design and optimising the mobile interface for smoother navigation and improved functionality on various devices
+- 💰 **Discount Codes and Sales:** Introduce discount codes periodic sales events to boost user engagement and drive sales

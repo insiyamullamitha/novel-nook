@@ -59,7 +59,9 @@ export default function BookMenu({ user }) {
           ))}
         </div>
       )}
-      <Footer />
+      <div className="mt-16">
+        <Footer />
+      </div>
     </>
   );
 }

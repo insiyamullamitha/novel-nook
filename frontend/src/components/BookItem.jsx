@@ -20,7 +20,6 @@ export default function BookItem({ book }) {
   useEffect(() => {
     setLoading(true);
 
-    // Check if the image URL is already fetched and stored
     if (imageRef.current) {
       setImage(imageRef.current);
       setLoading(false);
@@ -30,7 +29,7 @@ export default function BookItem({ book }) {
     getImageFile(bookTitle)
       .then((url) => {
         setImage(url);
-        imageRef.current = url; // Store the URL in the ref
+        imageRef.current = url;
         setLoading(false);
       })
       .catch((error) => {

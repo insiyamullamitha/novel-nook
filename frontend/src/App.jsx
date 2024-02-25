@@ -8,6 +8,7 @@ import MyProfile from "./pages/MyProfile";
 import MyOrders from "./pages/MyOrders";
 import BookInformation from "./pages/BookInformation";
 import VerifyEmail from "./pages/VerifyEmail";
+import MyWishlist from "./pages/MyWishlist";
 import {
   BrowserRouter as Router,
   Routes,
@@ -88,6 +89,18 @@ function App() {
           element={
             user && user.emailVerified ? (
               <MyOrders user={user} />
+            ) : user ? (
+              <VerifyEmail user={user} setUser={setUser} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/mywishlist"
+          element={
+            user && user.emailVerified ? (
+              <MyWishlist user={user} />
             ) : user ? (
               <VerifyEmail user={user} setUser={setUser} />
             ) : (
