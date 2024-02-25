@@ -25,13 +25,18 @@ const CARD_OPTIONS = {
 
 export default function PaymentForm({ price, basketItems, user }) {
   const [success, setSuccess] = useState(false);
+  const [paymentProcessed, setPaymentProcessed] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const { clearBasket } = useBasket();
 
   const handlePaymentSuccess = () => {
     alert("Payment successful. Thank you for your order!");
-    clearBasket();
+    // Move the state update logic outside the render phase
+    setTimeout(() => {
+      clearBasket();
+      setPaymentProcessed(true);
+    }, 0);
   };
 
   const order = {
@@ -77,6 +82,11 @@ export default function PaymentForm({ price, basketItems, user }) {
     }
   };
 
+  if (success && !paymentProcessed) {
+    saveOrderToFirestore(user.uid, order);
+    handlePaymentSuccess();
+  }
+
   return (
     <div className="tagline-font max-w-md text-black mx-auto">
       {!success ? (
@@ -103,9 +113,9 @@ export default function PaymentForm({ price, basketItems, user }) {
           </button>
         </form>
       ) : (
-        (saveOrderToFirestore(user.uid, order),
-        handlePaymentSuccess(),
-        (<Navigate to="/myorders" />))
+        <>
+          <Navigate to="/myorders" />
+        </>
       )}
     </div>
   );

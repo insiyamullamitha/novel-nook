@@ -60,9 +60,9 @@ node index.js
 - 🌐 **Google Books API:** Retrieve and display detailed information about each book by fetching data from the Google Books API
 - 💳 **Secure Online Payments:** Utilise secure payment methods, including Stripe integration
 - 📖 **User Profiles:** Create and manage your user profile with personalised settings
+- 💗 **Wishlist Feature:** Enable users to save and track books they are interested in purchasing later
 - 🧑‍💻 **Full-Stack Technology:** Built with React.js and Firebase for a robust and scalable application
 - ⭐️ **Rate and Review:** Allow users to rate and write reviews for books, enhancing the engagement and community aspect of the platform
-- 📚 **Wishlist Feature:** Enable users to save and track books they are interested in purchasing later
 
 ## Technologies 🛠️
 
