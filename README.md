@@ -63,6 +63,7 @@ node index.js
 - 💗 **Wishlist Feature:** Enable users to save and track books they are interested in purchasing later
 - 🧑‍💻 **Full-Stack Technology:** Built with React.js and Firebase for a robust and scalable application
 - ⭐️ **Rate and Review:** Allow users to rate and write reviews for books, enhancing the engagement and community aspect of the platform
+- 📱 **Responsive Design:** Ensure a seamless user experience across various devices and screen sizes
 
 ## Technologies 🛠️
 
@@ -85,6 +86,7 @@ node index.js
 - 💳 Implementation of a backend server and online payment processing using Stripe
 - 🎨 Front-end design and styling using React.js and Tailwind CSS
 - 📝 State management with React Context
+- 🌐 Responsive design skills
 
 ## Improvements 📈
 
@@ -92,5 +94,4 @@ node index.js
 - 👤 **Admin User Role:** Introduce an admin user role with special privileges, such as managing book listings, user accounts, and monitoring reviews
 - 📰 **News and Updates:** Create a section for news and updates, keeping users informed about new arrivals, promotions, and platform enhancements, perhaps tailored based on their wishlist and orders
 - 💬 **Chat Support:** Integrate a chat support system for users to get assistance and information in real-time
-- 📱 **Mobile Optimisation:** Enhance the user experience by implementing responsive design and optimising the mobile interface for smoother navigation and improved functionality on various devices
 - 💰 **Discount Codes and Sales:** Introduce discount codes periodic sales events to boost user engagement and drive sales
