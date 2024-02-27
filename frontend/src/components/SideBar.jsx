@@ -9,7 +9,7 @@ export default function SideBar({ user, close }) {
   const location = useLocation();
   return (
     <div
-      className="bg-secondary text-white w-1/2 h-screen fixed top-0 left-0 shadow-md z-50 transition-transform duration-600 ease-in-out transform"
+      className="bg-secondary text-white max-w-64 w-1/2 h-screen fixed top-0 left-0 shadow-md z-50 transition-transform duration-600 ease-in-out transform"
       onClick={close}
     >
       <div className="flex flex-col items-center mt-16 h-full gap-4 uppercase nav-font text-black">
