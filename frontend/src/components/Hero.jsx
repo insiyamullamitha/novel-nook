@@ -6,7 +6,7 @@ export default function Hero({ user }) {
   return (
     <>
       <div className="relative bg-secondary">
-        <div className="container mx-auto p-8 text-white">
+        <div className="container mx-auto py-8 text-white">
           <Navbar user={user} />
           <div className="tagline-font font-bold mt-8 px-8 text-5xl font-bold mb-4 text-black uppercase">
             Fuel <br /> Your Curiosity – <br />

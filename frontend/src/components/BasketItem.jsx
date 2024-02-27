@@ -32,7 +32,7 @@ export default function BasketItem({ bookTitle, quantity }) {
   }, [bookTitle]);
 
   return (
-    <div className="my-6 bg-white shadow-xl rounded-lg p-4 flex tagline-font items-center justify-between">
+    <div className="my-6 bg-white hover:shadow-xl transition-all rounded-lg p-4 flex tagline-font items-center justify-between">
       <div className="flex items-center gap-8">
         <img className="max-h-24 block" src={image} />
         <div>

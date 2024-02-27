@@ -50,11 +50,11 @@ export default function MyWishlist({ user }) {
         </div>
       )}
       {loading ? (
-        <div className="container mx-auto text-black tagline-font px-8">
+        <div className="container mx-auto text-center text-black tagline-font px-8">
           Loading...
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 my-8 container mx-auto px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 my-8 container mx-auto px-8">
           {likedBooks.map((book) => (
             <BookItem key={book.Title} book={book} user={user} />
           ))}

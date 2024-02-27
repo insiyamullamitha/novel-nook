@@ -10,7 +10,6 @@ export default function ReviewSection({ bookTitle }) {
       try {
         const fetchedReviews = await getBookReviews(bookTitle);
         setReviews(fetchedReviews);
-        console.log("Fetched Reviews:", fetchedReviews);
       } catch (error) {
         console.error("Error fetching reviews:", error);
       }

@@ -26,7 +26,7 @@ export default function ({ date, price, books, totalquantity }) {
   }, [books]);
 
   return (
-    <div className="container mx-auto my-6 bg-white p-6 rounded-lg shadow-xl">
+    <div className="container mx-auto my-6 bg-white p-6 rounded-lg hover:shadow-xl transition-all">
       <h1 className="text-2xl font-bold text-accent1 mb-2">{date}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

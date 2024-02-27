@@ -114,7 +114,7 @@ export default function BookItem({ book, user }) {
           {book.Author}
         </p>
         {loading ? (
-          <div>Loading...</div>
+          <div className="tagline-font">Loading...</div>
         ) : (
           <img
             src={image}
@@ -152,8 +152,7 @@ export default function BookItem({ book, user }) {
       <button
         className={`bg-black mt-4 mb-4 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide hover:font-bold ${
           addedToBasket ? "text-green-500" : ""
-        } `}
-        style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+        } sm:w-auto sm:px-4 sm:py-2 whitespace-no-wrap`}
         onClick={handleAddToBasket}
       >
         {addedToBasket ? (

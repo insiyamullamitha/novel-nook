@@ -9,7 +9,7 @@ export default function SearchBar({ onSearch }) {
         placeholder="Search for a book"
         onChange={(event) => onSearch(event.target.value)}
       />
-      <button className="bg-accent3 text-white rounded-lg p-3 ml-2">
+      <button className="bg-accent3 text-white rounded-full p-3 ml-2 hover:bg-accent2">
         <SearchIcon />
       </button>
     </div>

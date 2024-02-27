@@ -6,6 +6,7 @@ import OrderIcon from "../icons/OrderIcon";
 import UserIcon from "../icons/UserIcon";
 import { auth } from "../components/FirebaseApp";
 import HeartIcon from "../icons/HeartIcon";
+import EnvelopeIcon from "../icons/EnvelopeIcon";
 
 export default function MyProfile({ user, setUser }) {
   const handleLogout = () => {
@@ -34,47 +35,43 @@ export default function MyProfile({ user, setUser }) {
         <h1 className="text-secondary mt-4 tagline-font uppercase text-4xl">
           My Profile
         </h1>
-        <div className="flex col-2 justify-center items-center gap-12 mt-12">
-          <div>
-            <h2 className="text-accent1 tagline-font text-2xl">
-              {user.fullName}
-            </h2>
-            <p className="text-black">
-              <span className="text-secondary">Email:</span>
-              <span className="ml-2">
-                <a href={user.email}>{user.email}</a>
-              </span>
-            </p>
-          </div>
-        </div>
-        <div className="flex gap-4 justify-center items-center mt-12">
+        <p className="text-black tagline-font text-lg mt-8">
+          Welcome, {user.email}!
+        </p>
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-2 mt-8">
           <Link to="/myorders">
             <button
-              className="flex gap-2 bg-accent2 text-black uppercase font-semibold rounded-full px-4 py-2 items-center my-4 tracking-wide hover:font-bold"
+              className="lg:w-auto w-full md:flex md:gap-2 bg-accent2 justify-center items-center text-black uppercase font-semibold rounded-full px-4 py-2 my-4 tracking-wide hover:font-bold"
               style={{ whiteSpace: "nowrap", overflow: "hidden" }}
             >
-              My Orders
-              <OrderIcon />
+              <span className="flex items-center">
+                My Orders&nbsp;&nbsp;
+                <OrderIcon className="ml-2" />
+              </span>
             </button>
           </Link>
           <Link to="/mywishlist">
             <button
-              className="flex gap-2 bg-accent4 text-black uppercase font-semibold rounded-full px-4 py-2 items-center my-4 tracking-wid hover:font-bold"
+              className="lg:w-auto w-full bg-accent4 justify-center items-center text-black uppercase font-semibold rounded-full px-4 py-2 my-4 tracking-wid hover:font-bold"
               style={{ whiteSpace: "nowrap", overflow: "hidden" }}
             >
-              My Wishlist
-              <HeartIcon />
+              <span className="flex items-center">
+                My Wishlist&nbsp;&nbsp;
+                <HeartIcon className="ml-2" />
+              </span>
             </button>
           </Link>
           <Link to="/login">
             <button
               type="submit"
               onClick={handleLogout}
-              className="flex gap-2 bg-accent1 text-black uppercase font-semibold rounded-full px-4 py-2 items-center my-4 tracking-wide hover:font-bold"
+              className="lg:w-auto w-full bg-accent1 justify-center items-center text-black uppercase font-semibold rounded-full px-4 py-2 my-4 tracking-wide hover:font-bold"
               style={{ whiteSpace: "nowrap", overflow: "hidden" }}
             >
-              Log Out
-              <UserIcon />
+              <span className="flex items-center">
+                Log Out&nbsp;&nbsp;
+                <UserIcon className="ml-2" />
+              </span>
             </button>
           </Link>
         </div>

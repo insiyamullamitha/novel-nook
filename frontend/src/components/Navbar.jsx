@@ -1,14 +1,22 @@
+import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import BasketIcon from "../icons/BasketIcon";
 import { useBasket, calculateBasketCount } from "./BasketContext";
+import SideBar from "./SideBar";
+import SideBarIcon from "../icons/SideBarIcon";
 
 export default function Navbar({ user }) {
   const location = useLocation();
   const { state } = useBasket();
   const basketCount = calculateBasketCount(state.items);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const isActive = (path) => {
     return location.pathname === path ? "font-bold" : "";
+  };
+
+  const closeSideBar = () => {
+    setShowSidebar(false);
   };
 
   return (
@@ -20,56 +28,65 @@ export default function Navbar({ user }) {
         <NavLink to="/" className="logo-font text-2xl text-black">
           Novel Nook
         </NavLink>
-        <ul className="flex space-x-4 items-center uppercase">
-          <li>
-            <NavLink
-              to="/"
-              className="tracking-wide nav-font text-black uppercase hover:font-bold"
-              activeclassname="font-bold"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/books"
-              className="tracking-wide nav-font text-black uppercase hover:font-bold"
-              activeclassname="font-bold"
-            >
-              Books
-            </NavLink>
-          </li>
-          {!user && (
+        <div className="block sm:hidden">
+          <button
+            onClick={() => setShowSidebar(!showSidebar)}
+            className="text-white p-2 focus:outline-none"
+          >
+            <SideBarIcon />
+          </button>
+        </div>
+        <ul
+          className={`flex space-x-4 items-center uppercase sm:flex ${
+            showSidebar ? "hidden" : "hidden sm:flex"
+          }`}
+        >
+          {!showSidebar && (
             <>
               <li>
                 <NavLink
-                  to="/login"
+                  to="/"
                   className="tracking-wide nav-font text-black uppercase hover:font-bold"
-                  activeclassname="font-bold"
                 >
-                  Log In
+                  Home
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/signup"
+                  to="/books"
                   className="tracking-wide nav-font text-black uppercase hover:font-bold"
-                  activeclassname="font-bold"
                 >
-                  Sign Up
+                  Books
                 </NavLink>
               </li>
-            </>
-          )}
-          {user && (
-            <>
+              {!user && (
+                <>
+                  <li>
+                    <NavLink
+                      to="/login"
+                      className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                    >
+                      Log In
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              {user && (
+                <li>
+                  <NavLink
+                    to="/myprofile"
+                    className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                  >
+                    Profile
+                  </NavLink>
+                </li>
+              )}
               <li>
                 <NavLink
-                  to="/myprofile"
+                  to="/contact"
                   className="tracking-wide nav-font text-black uppercase hover:font-bold"
-                  activeclassname="font-bold"
                 >
-                  Profile
+                  Contact Us
                 </NavLink>
               </li>
             </>
@@ -86,6 +103,7 @@ export default function Navbar({ user }) {
           </Link>
         </div>
       </div>
+      {showSidebar && <SideBar user={user} close={closeSideBar} />}
     </nav>
   );
 }

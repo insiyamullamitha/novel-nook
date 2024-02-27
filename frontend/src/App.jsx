@@ -18,6 +18,7 @@ import {
 import { useEffect, useState } from "react";
 import { auth } from "./components/FirebaseApp";
 import { onAuthStateChanged } from "firebase/auth";
+import Contact from "./pages/Contact";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -108,6 +109,7 @@ function App() {
             )
           }
         />
+        <Route path="/contact" element={<Contact user={user} />} />
         <Route
           path="*"
           element={user ? <Home user={user} /> : <Navigate to="/login" />}

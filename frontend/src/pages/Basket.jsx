@@ -33,7 +33,6 @@ export default function Basket({ user }) {
         />
       ));
       setBasketItems(itemsArray);
-      console.log("Basket items:", itemsArray);
     }
     setPrice((basketCount * 8.99).toFixed(2));
     setShippingPrice(basketCount * 8.99 > 25 ? 0 : 3.99);
@@ -58,7 +57,7 @@ export default function Basket({ user }) {
               <Link to="/books" className="text-accent1">
                 <button
                   type="submit"
-                  className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 items-center my-4 tracking-wide"
+                  className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-4 py-2 items-center my-4 tracking-wide"
                   style={{ whiteSpace: "nowrap", overflow: "hidden" }}
                 >
                   Continue Shopping
