@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useCallback,
+  useEffect,
+} from "react";
 
 const initialState = {
   items: [],
@@ -8,9 +14,16 @@ const ADD_TO_BASKET = "ADD_TO_BASKET";
 const DELETE_ITEM = "DELETE_ITEM";
 const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 const CLEAR_BASKET = "CLEAR_BASKET";
+const SET_BASKET_FROM_STORAGE = "SET_BASKET_FROM_STORAGE";
 
 const basketReducer = (state, action) => {
   switch (action.type) {
+    case SET_BASKET_FROM_STORAGE:
+      return {
+        ...state,
+        items: action.payload,
+      };
+
     case ADD_TO_BASKET:
       const existingItemIndex = state.items.findIndex(
         (item) => item.bookTitle === action.payload.bookTitle
@@ -65,6 +78,20 @@ const basketReducer = (state, action) => {
 const BasketContext = createContext();
 export const BasketProvider = ({ children }) => {
   const [state, dispatch] = useReducer(basketReducer, initialState);
+
+  useEffect(() => {
+    const savedBasket = localStorage.getItem("basket");
+    if (savedBasket) {
+      dispatch({
+        type: SET_BASKET_FROM_STORAGE,
+        payload: JSON.parse(savedBasket),
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    saveBasket(state.items);
+  }, [state.items]);
 
   const addToBasket = useCallback((item) => {
     dispatch({ type: ADD_TO_BASKET, payload: item });
@@ -128,4 +155,8 @@ export const calculateBasketCount = (items) => {
     basketCount += item.quantity;
   }
   return basketCount;
+};
+
+const saveBasket = (basket) => {
+  localStorage.setItem("basket", JSON.stringify(basket));
 };
