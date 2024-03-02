@@ -1,12 +1,13 @@
 import { useBasket } from "./BasketContext";
 import { useState, useEffect } from "react";
 import { getImageFile } from "./FirebaseApp";
+import toast from "react-hot-toast";
 
 export default function BasketItem({ bookTitle, quantity }) {
   const { deleteItem, updateQuantity } = useBasket();
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);
   const [image, setImage] = useState(null);
-  const [loading, setLoading] = useState(false); // Add missing loading state variable
+  const [loading, setLoading] = useState(false);
 
   const handleQuantityUpdate = () => {
     updateQuantity(bookTitle, selectedQuantity);
@@ -15,6 +16,7 @@ export default function BasketItem({ bookTitle, quantity }) {
   const handleDelete = () => {
     deleteItem(bookTitle);
     setSelectedQuantity(1);
+    toast("Item removed from basket", { icon: "📚" });
   };
 
   useEffect(() => {

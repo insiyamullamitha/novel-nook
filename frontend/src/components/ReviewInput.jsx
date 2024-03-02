@@ -2,6 +2,7 @@ import { useState } from "react";
 import Right from "../icons/Right";
 import { saveBookReviewToFirestore } from "./FirebaseApp";
 import ControlledStarRating from "./ControlledStarRating";
+import toast from "react-hot-toast";
 
 export default function ReviewInput({ bookTitle }) {
   const [review, setReview] = useState("");
@@ -10,12 +11,14 @@ export default function ReviewInput({ bookTitle }) {
   const submitReview = async (e) => {
     e.preventDefault();
     if (review.length < 5) {
-      alert("Reviews must be at least 5 characters long");
+      toast.error("Review must be at least 5 characters long");
       return;
     }
     await saveBookReviewToFirestore(bookTitle, review, rating);
+    toast("Review submitted!", { icon: "⭐" });
     setReview("");
     setRating(5);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     window.location.reload();
   };
 

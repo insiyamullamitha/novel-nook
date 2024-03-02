@@ -12,6 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import HeartIcon from "../icons/HeartIcon";
 import RedHeartIcon from "../icons/RedHeartIcon";
+import toast from "react-hot-toast";
 
 export default function BookItem({ book, user }) {
   const [quantity, setQuantity] = useState(1);
@@ -67,20 +68,18 @@ export default function BookItem({ book, user }) {
   const handleWishlistButton = () => {
     if (user) {
       if (addedToWishlist) {
-        if (
-          window.confirm(
-            "Are you sure you want to remove this book from your wishlist?"
-          )
-        ) {
+        {
           deleteFromWishlist(user.uid, bookTitle);
           setAddedToWishlist(false);
+          toast(`Removed from wishlist`, { icon: "💔" });
         }
       } else {
         addToWishlist(user.uid, bookTitle);
         setAddedToWishlist(true);
+        toast(`Added to wishlist`, { icon: "❤️" });
       }
     } else {
-      alert("You must be logged in to add to your wishlist");
+      toast.error("You must be logged in to add to your wishlist");
     }
   };
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { saveOrderToFirestore } from "./FirebaseApp";
 import { useBasket } from "./BasketContext";
+import { toast } from "react-hot-toast";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -31,8 +32,7 @@ export default function PaymentForm({ price, basketItems, user }) {
   const { clearBasket } = useBasket();
 
   const handlePaymentSuccess = () => {
-    alert("Payment successful. Thank you for your order!");
-    // Move the state update logic outside the render phase
+    toast.success("Payment successful!");
     setTimeout(() => {
       clearBasket();
       setPaymentProcessed(true);
@@ -70,15 +70,15 @@ export default function PaymentForm({ price, basketItems, user }) {
         });
 
         if (response.data.success) {
-          console.log("Successful payment");
           setSuccess(true);
         }
       } catch (error) {
         console.log("Error", error);
+        toast.error("Something went wrong. Please try again.");
       }
     } else {
       console.log(error.message);
-      alert(error.message);
+      toast.error("Something went wrong. Please try again.");
     }
   };
 

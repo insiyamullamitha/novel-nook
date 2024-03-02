@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getBookReviews } from "./FirebaseApp";
 import StarRating from "./StarRating";
+import toast from "react-hot-toast";
 
 export default function ReviewSection({ bookTitle }) {
   const [reviews, setReviews] = useState([]);
@@ -10,8 +11,10 @@ export default function ReviewSection({ bookTitle }) {
       try {
         const fetchedReviews = await getBookReviews(bookTitle);
         setReviews(fetchedReviews);
+        console.log("Fetched reviews:", fetchedReviews);
       } catch (error) {
         console.error("Error fetching reviews:", error);
+        toast.error("Error fetching reviews");
       }
     };
     fetchReviews();

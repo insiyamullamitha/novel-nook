@@ -5,6 +5,7 @@ import {
   useCallback,
   useEffect,
 } from "react";
+import toast from "react-hot-toast";
 
 const initialState = {
   items: [],
@@ -35,9 +36,11 @@ const basketReducer = (state, action) => {
           updatedItems[existingItemIndex].quantity + action.payload.quantity;
 
         if (updatedQuantity > 100) {
-          alert("You can't add more than 100 of the same item to your basket");
+          toast.error("You can't add more than 100 items of the same book");
           return state;
         }
+
+        toast("Added to basket", { icon: "📚" });
 
         updatedItems[existingItemIndex].quantity = updatedQuantity;
 

@@ -17,6 +17,7 @@ import {
   updateDoc,
 } from "firebase/firestore/lite";
 import { ref, getDownloadURL, getStorage } from "firebase/storage";
+import toast from "react-hot-toast";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVSww84U27TAnGpgcaW2Pn57OvVj7t0Kk",
@@ -119,15 +120,13 @@ export const saveBookReviewToFirestore = async (bookTitle, review, rating) => {
         Reviews: updatedReviews,
         OverallRating: overallRating,
       });
-
-      alert("Review submitted successfully");
     } else {
       console.error("Error saving review to firestore: Book not found");
-      alert("Something went wrong. Please try again.");
+      toast.error("Error saving review");
     }
   } catch (error) {
     console.error("Error saving review to firestore", error);
-    alert("Something went wrong. Please try again.");
+    toast.error("Error saving review");
   }
 };
 
@@ -193,7 +192,7 @@ export const addToWishlist = async (uid, bookTitle) => {
     if (userSnapshot.exists()) {
       const userWishlist = userSnapshot.data()?.Wishlist || [];
       if (userWishlist.includes(bookTitle)) {
-        alert("This book is already in your wishlist");
+        toast.error("Book already in wishlist");
         return;
       }
       const updatedWishlist = [...userWishlist, bookTitle];

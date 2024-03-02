@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { auth } from "./components/FirebaseApp";
 import { onAuthStateChanged } from "firebase/auth";
 import Contact from "./pages/Contact";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <Router>
+      <Toaster />
       <Routes>
         <Route path="/" element={<Home user={user} />} />
         <Route path="/books" element={<BookMenu user={user} />} />
