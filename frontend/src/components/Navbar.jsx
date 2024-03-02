@@ -11,10 +11,6 @@ export default function Navbar({ user }) {
   const basketCount = calculateBasketCount(state.items);
   const [showSidebar, setShowSidebar] = useState(false);
 
-  const isActive = (path) => {
-    return location.pathname === path ? "font-bold" : "";
-  };
-
   const closeSideBar = () => {
     setShowSidebar(false);
   };
@@ -47,6 +43,9 @@ export default function Navbar({ user }) {
                 <NavLink
                   to="/"
                   className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                  style={{
+                    fontWeight: location.pathname === "/" ? "bold" : "",
+                  }}
                 >
                   Home
                 </NavLink>
@@ -55,6 +54,9 @@ export default function Navbar({ user }) {
                 <NavLink
                   to="/books"
                   className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                  style={{
+                    fontWeight: location.pathname === "/books" ? "bold" : "",
+                  }}
                 >
                   Books
                 </NavLink>
@@ -65,6 +67,13 @@ export default function Navbar({ user }) {
                     <NavLink
                       to="/login"
                       className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                      style={{
+                        fontWeight:
+                          location.pathname === "/login" ||
+                          location.pathname === "/signup"
+                            ? "bold"
+                            : "",
+                      }}
                     >
                       Log In
                     </NavLink>
@@ -76,6 +85,10 @@ export default function Navbar({ user }) {
                   <NavLink
                     to="/myprofile"
                     className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                    style={{
+                      fontWeight:
+                        location.pathname === "/myprofile" ? "bold" : "",
+                    }}
                   >
                     Profile
                   </NavLink>
@@ -85,6 +98,9 @@ export default function Navbar({ user }) {
                 <NavLink
                   to="/contact"
                   className="tracking-wide nav-font text-black uppercase hover:font-bold"
+                  style={{
+                    fontWeight: location.pathname === "/contact" ? "bold" : "",
+                  }}
                 >
                   Contact Us
                 </NavLink>

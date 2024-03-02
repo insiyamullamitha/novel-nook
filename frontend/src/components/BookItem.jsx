@@ -90,7 +90,7 @@ export default function BookItem({ book, user }) {
     setTimeout(() => {
       setAddedToBasket(false);
       setQuantity(1);
-    }, 3000);
+    }, 2000);
   };
 
   return (

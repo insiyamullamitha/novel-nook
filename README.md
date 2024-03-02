@@ -75,11 +75,7 @@ node index.js
 - **Back-end:**
 
   - Firebase (Authentication, Firestore)
-  - Node.js (for handling Stripe pay ments)
-
-- **Payment Processing:**
-
-  - Stripe
+  - Node.js (for handling Stripe payments)
 
 - **Additional Libraries Used:**
   - daisyUI (Accordion component)
