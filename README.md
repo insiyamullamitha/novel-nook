@@ -78,7 +78,13 @@ node index.js
   - Node.js (for handling Stripe pay ments)
 
 - **Payment Processing:**
+
   - Stripe
+
+- **Additional Libraries Used:**
+  - daisyUI (Accordion component)
+  - MUI (Star ratings)
+  - React Hot Toast (Alerts and Notifications)
 
 ## What I Learned 🧠
 
@@ -94,4 +100,4 @@ node index.js
 - 👤 **Admin User Role:** Introduce an admin user role with special privileges, such as managing book listings, user accounts, and monitoring reviews
 - 📰 **News and Updates:** Create a section for news and updates, keeping users informed about new arrivals, promotions, and platform enhancements, perhaps tailored based on their wishlist and orders
 - 💬 **Chat Support:** Integrate a chat support system for users to get assistance and information in real-time
-- 💰 **Discount Codes and Sales:** Introduce discount codes periodic sales events to boost user engagement and drive sales
+- 💰 **Discount Codes and Sales:** Introduce discount codes and periodic sales events to boost user engagement and drive sales
