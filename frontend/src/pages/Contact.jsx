@@ -23,7 +23,7 @@ export default function Contact({ user }) {
           </p>
           <a
             href="mailto:"
-            className="flex gap-2 items-center py-2 bg-accent1 text-black font-bold uppercase px-4 rounded-full mt-4 md:mt-0"
+            className="flex gap-2 items-center py-2 bg-accent1 text-black font-semibold uppercase px-4 rounded-full mt-4 md:mt-0 hover:font-bold shadow-md tracking-wide focus:outline-none"
             style={{ whiteSpace: "nowrap", overflow: "hidden" }}
           >
             <EnvelopeIcon />

@@ -41,7 +41,7 @@ export default function MyProfile({ user, setUser }) {
         <div className="flex flex-col lg:flex-row justify-center items-center gap-2 mt-8">
           <Link to="/myorders">
             <button
-              className="lg:w-auto w-full md:flex md:gap-2 bg-accent2 justify-center items-center text-black uppercase font-semibold rounded-full px-4 py-2 my-4 tracking-wide hover:font-bold"
+              className="lg:w-auto w-full md:flex md:gap-2 bg-accent2 justify-center items-center text-black uppercase font-semibold rounded-full px-4 py-2 my-4 tracking-wide hover:font-bold shadow-md"
               style={{ whiteSpace: "nowrap", overflow: "hidden" }}
             >
               <span className="flex items-center">
@@ -52,7 +52,7 @@ export default function MyProfile({ user, setUser }) {
           </Link>
           <Link to="/mywishlist">
             <button
-              className="lg:w-auto w-full bg-accent4 justify-center items-center text-black uppercase font-semibold rounded-full px-4 py-2 my-4 tracking-wid hover:font-bold"
+              className="lg:w-auto w-full bg-accent4 justify-center items-center text-black uppercase font-semibold rounded-full px-4 py-2 my-4 tracking-wid hover:font-bold shadow-md"
               style={{ whiteSpace: "nowrap", overflow: "hidden" }}
             >
               <span className="flex items-center">
@@ -65,7 +65,7 @@ export default function MyProfile({ user, setUser }) {
             <button
               type="submit"
               onClick={handleLogout}
-              className="lg:w-auto w-full bg-accent1 justify-center items-center text-black uppercase font-semibold rounded-full px-4 py-2 my-4 tracking-wide hover:font-bold"
+              className="lg:w-auto w-full bg-accent1 justify-center items-center text-black uppercase font-semibold rounded-full px-4 py-2 my-4 tracking-wide hover:font-bold shadow-md"
               style={{ whiteSpace: "nowrap", overflow: "hidden" }}
             >
               <span className="flex items-center">

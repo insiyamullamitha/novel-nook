@@ -64,7 +64,7 @@ export default function Basket({ user }) {
               <Link to="/books" className="text-accent1">
                 <button
                   type="submit"
-                  className="flex gap-2 bg-black text-white uppercase font-semibold flex justify-center mx-auto rounded-full px-4 py-2 items-center my-4 tracking-wide"
+                  className="flex gap-2 bg-black text-white uppercase font-semibold flex justify-center mx-auto rounded-full px-4 py-2 items-center my-4 tracking-wide shadow-md"
                   style={{ whiteSpace: "nowrap", overflow: "hidden" }}
                 >
                   Continue Shopping
@@ -105,7 +105,7 @@ export default function Basket({ user }) {
               <>
                 <div className="flex items-center mt-4">
                   <button
-                    className="bg-black flex gap-2 text-white uppercase font-semibold rounded-full mb-12 px-6 py-2"
+                    className="bg-black flex gap-2 text-white uppercase font-semibold rounded-full mb-12 px-6 py-2 shadow-md"
                     style={{ whiteSpace: "nowrap", overflow: "hidden" }}
                     onClick={() => setCheckout(!checkout)}
                   >
@@ -125,7 +125,7 @@ export default function Basket({ user }) {
                 />
                 <button
                   onClick={() => setCheckout(!checkout)}
-                  className="bg-black flex gap-2 mx-auto text-white uppercase font-semibold rounded-full px-6 py-2 mb-12"
+                  className="bg-black flex gap-2 mx-auto text-white uppercase font-semibold rounded-full px-6 py-2 mb-12 shadow-md"
                 >
                   Cancel
                   <MoneyIcon />

@@ -42,7 +42,7 @@ export default function MyWishlist({ user }) {
             You have no books in your wishlist.
           </p>
           <Link to="/books">
-            <button className="bg-accent1 flex gap-2 text-black uppercase font-semibold rounded-full px-4 py-2 items-center my-4 tracking-wid hover:font-bold hover:bg-accent3 hover:text-white">
+            <button className="bg-accent1 flex gap-2 text-black uppercase font-semibold rounded-full px-4 py-2 items-center my-4 tracking-wid hover:font-bold hover:bg-accent3 shadow-md hover:text-white">
               Browse Books
               <Right />
             </button>

@@ -39,7 +39,7 @@ export default function ReviewInput({ bookTitle }) {
         ></textarea>
         <button
           onClick={submitReview}
-          className="mt-4 mx-auto sm:w-3/4 lg:w-2/3 justify-center items-center flex gap-2 bg-secondary mb-8 text-black uppercase text-m font-semibold rounded-full px-4 sm:px-6 py-2 hover:font-bold hover:bg-accent2"
+          className="mt-4 mx-auto sm:w-3/4 lg:w-2/3 justify-center items-center flex gap-2 bg-secondary mb-8 text-black uppercase text-m font-semibold rounded-full px-4 sm:px-6 py-2 shadow-md hover:font-bold hover:bg-accent2"
         >
           Submit <Right />
         </button>

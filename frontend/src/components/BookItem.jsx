@@ -149,7 +149,7 @@ export default function BookItem({ book, user }) {
         </div>
       </div>
       <button
-        className={`bg-black mt-4 mb-4 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide hover:font-bold ${
+        className={`bg-black mt-4 mb-4 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide hover:font-bold shadow-md ${
           addedToBasket ? "text-green-500" : ""
         } sm:w-auto sm:px-4 sm:py-2 whitespace-no-wrap`}
         onClick={handleAddToBasket}

@@ -181,7 +181,7 @@ export default function BookInformation({ user }) {
               className="items-center justify-center flex mx-auto"
             />
             <Link to="review-section" smooth={true} duration={500}>
-              <button className="mt-4 w-55 mx-auto justify-center items-center flex gap-2 bg-black mb-4 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 hover:font-bold hover:bg-gray-800">
+              <button className="mt-4 w-55 mx-auto justify-center items-center flex gap-2 bg-black mb-4 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 hover:font-bold hover:bg-gray-800 hover:font-bold shadow-md">
                 See Reviews <EmptyStarIcon />
               </button>
             </Link>
@@ -243,7 +243,7 @@ export default function BookInformation({ user }) {
               </div>
             </div>
             <button
-              className={`bg-black mt-4 mb-4 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center tracking-wide hover:font-bold hover:bg-gray-800`}
+              className={`bg-black mt-4 mb-4 flex gap-2 text-white uppercase text-sm font-semibold rounded-full px-6 py-2 justify-center items-center tracking-wide hover:font-bold hover:bg-gray-800 hover:font-bold shadow-md transition-all`}
               onClick={handleAddToBasket}
             >
               {addedToBasket ? (
@@ -268,7 +268,7 @@ export default function BookInformation({ user }) {
         <ReviewSection bookTitle={bookTitle} />
       </div>
       <button
-        className="text-black flex gap-2 uppercase bg-accent1 text-sm font-semibold rounded-full px-6 py-2 mb-12 hover:font-bold hover:bg-accent2"
+        className="text-black flex gap-2 uppercase bg-accent1 text-sm font-semibold rounded-full px-6 py-2 mb-12 hover:font-bold hover:bg-accent2 shadow-md"
         onClick={() => setWriteReview(!writeReview)}
       >
         Write a Review

@@ -85,7 +85,7 @@ export default function LogIn({ user, setUser }) {
               <button
                 type="submit"
                 onClick={onLogin}
-                className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide hover:bg-accent1 focus:outline-none"
+                className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-6 py-2 justify-center items-center m-auto tracking-wide hover:bg-accent1 hover:font-bold shadow-md focus:outline-none"
               >
                 Log In
                 <Right />

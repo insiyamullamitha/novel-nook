@@ -19,7 +19,7 @@ export default function Hero({ user }) {
             </p>
             <Link to="aboutSection" smooth={true} duration={500}>
               <button
-                className="flex gap-2 py-2 bg-accent1 text-black font-bold uppercase px-3 py-2 rounded-full mt-4 md:mt-0"
+                className="flex gap-2 py-2 bg-accent1 text-black font-semibold uppercase px-3 py-2 rounded-full mt-4 md:mt-0 shadow-md hover:font-bold"
                 style={{ whiteSpace: "nowrap", overflow: "hidden" }}
               >
                 Learn More
