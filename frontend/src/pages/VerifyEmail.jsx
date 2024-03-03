@@ -5,12 +5,12 @@ import EnvelopeIcon from "../icons/EnvelopeIcon";
 import UserIcon from "../icons/UserIcon";
 import { sendEmailVerification } from "firebase/auth";
 import { auth } from "../components/FirebaseApp";
-import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 export default function VerifyEmail({ user, setUser }) {
   const resendEmailVerification = () => {
     sendEmailVerification(user).then(() => {
-      alert("Email verification sent");
+      toast("Email verification sent", { icon: "💌" });
     });
   };
 
@@ -24,10 +24,6 @@ export default function VerifyEmail({ user, setUser }) {
         console.error(error);
       });
   };
-
-  useEffect(() => {
-    window.location.reload();
-  }, []);
 
   return (
     <>

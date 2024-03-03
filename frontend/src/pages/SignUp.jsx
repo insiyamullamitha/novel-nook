@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { auth, saveUserDataToFirestore } from "../components/FirebaseApp";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function SignUp({ user, setUser }) {
   const [fullName, setFullName] = useState("");
@@ -34,11 +35,11 @@ export default function SignUp({ user, setUser }) {
         email: email,
       });
       sendEmailVerification(auth.currentUser).then(() => {
-        console.log("Email verification sent");
+        toast("Email verification sent", { icon: "💌" });
       });
       navigate("/profile");
     } catch (error) {
-      console.error("Error registering user:", error);
+      toast.error("Something went wrong. Please try again.");
     }
   }
 

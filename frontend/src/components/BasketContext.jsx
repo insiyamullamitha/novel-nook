@@ -17,6 +17,10 @@ const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 const CLEAR_BASKET = "CLEAR_BASKET";
 const SET_BASKET_FROM_STORAGE = "SET_BASKET_FROM_STORAGE";
 
+const saveBasket = (basket) => {
+  localStorage.setItem("basket", JSON.stringify(basket));
+};
+
 const basketReducer = (state, action) => {
   switch (action.type) {
     case SET_BASKET_FROM_STORAGE:
@@ -36,19 +40,24 @@ const basketReducer = (state, action) => {
           updatedItems[existingItemIndex].quantity + action.payload.quantity;
 
         if (updatedQuantity > 100) {
-          toast.error("You can't add more than 100 items of the same book");
           return state;
         }
 
-        toast("Added to basket", { icon: "📚" });
-
         updatedItems[existingItemIndex].quantity = updatedQuantity;
+
+        saveBasket(updatedItems);
+
+        setTimeout(() => {
+          toast("Added to basket", { icon: "📚" });
+        }, 0);
 
         return {
           ...state,
           items: updatedItems,
         };
       } else {
+        saveBasket([...state.items, action.payload]);
+
         return {
           ...state,
           items: [...state.items, action.payload],
@@ -56,18 +65,24 @@ const basketReducer = (state, action) => {
       }
 
     case DELETE_ITEM:
+      saveBasket(action.payload);
+
       return {
         ...state,
         items: action.payload,
       };
 
     case UPDATE_QUANTITY:
+      saveBasket(action.payload);
+
       return {
         ...state,
         items: action.payload,
       };
 
     case CLEAR_BASKET:
+      saveBasket([]);
+
       return {
         ...state,
         items: [],
@@ -79,6 +94,7 @@ const basketReducer = (state, action) => {
 };
 
 const BasketContext = createContext();
+
 export const BasketProvider = ({ children }) => {
   const [state, dispatch] = useReducer(basketReducer, initialState);
 
@@ -92,10 +108,6 @@ export const BasketProvider = ({ children }) => {
     }
   }, []);
 
-  useEffect(() => {
-    saveBasket(state.items);
-  }, [state.items]);
-
   const addToBasket = useCallback((item) => {
     dispatch({ type: ADD_TO_BASKET, payload: item });
   }, []);
@@ -107,7 +119,7 @@ export const BasketProvider = ({ children }) => {
       );
 
       dispatch({
-        type: "DELETE_ITEM",
+        type: DELETE_ITEM,
         payload: updatedItems,
       });
     },
@@ -126,14 +138,14 @@ export const BasketProvider = ({ children }) => {
     });
 
     dispatch({
-      type: "UPDATE_QUANTITY",
+      type: UPDATE_QUANTITY,
       payload: updatedItems,
     });
-  });
+  }, []);
 
   const clearBasket = useCallback(() => {
     dispatch({ type: CLEAR_BASKET });
-  });
+  }, []);
 
   return (
     <BasketContext.Provider
@@ -158,8 +170,4 @@ export const calculateBasketCount = (items) => {
     basketCount += item.quantity;
   }
   return basketCount;
-};
-
-const saveBasket = (basket) => {
-  localStorage.setItem("basket", JSON.stringify(basket));
 };

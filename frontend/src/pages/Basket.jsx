@@ -5,7 +5,6 @@ import BasketItem from "../components/BasketItem";
 import Footer from "../components/Footer";
 import MoneyIcon from "../icons/MoneyIcon";
 import { useBasket, calculateBasketCount } from "../components/BasketContext";
-import DiscountCodeInput from "../components/DiscountCodeInput";
 import BasketIcon from "../icons/BasketIcon";
 import { Link } from "react-router-dom";
 import StripeContainer from "../components/StripeContainer";
@@ -44,20 +43,28 @@ export default function Basket({ user }) {
         <Navbar user={user} />
       </div>
       <TagLineStrip className="shadow-xl" />
-      <div className="container mx-auto text-black px-8 mt-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8">
+      <div
+        className={`container mx-auto text-black px-8 mt-8 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8
+      ${emptyBasket ? "grid-cols-1" : "grid-cols-2"}
+      `}
+      >
         <div>
-          <h1 className="text-4xl tagline-font font-bold text-secondary uppercase">
+          <h1
+            className={`text-4xl tagline-font font-bold mt-4 text-secondary uppercase ${
+              emptyBasket ? "text-center" : ""
+            }`}
+          >
             Basket
           </h1>
           {emptyBasket ? (
             <>
-              <p className="text-xl tagline-font mt-4">
+              <p className="text-lg tagline-font mt-4 text-center">
                 There are no items in your basket.
               </p>
               <Link to="/books" className="text-accent1">
                 <button
                   type="submit"
-                  className="flex gap-2 bg-black text-white uppercase font-semibold rounded-full px-4 py-2 items-center my-4 tracking-wide"
+                  className="flex gap-2 bg-black text-white uppercase font-semibold flex justify-center mx-auto rounded-full px-4 py-2 items-center my-4 tracking-wide"
                   style={{ whiteSpace: "nowrap", overflow: "hidden" }}
                 >
                   Continue Shopping
@@ -71,7 +78,7 @@ export default function Basket({ user }) {
         </div>
         {!emptyBasket && (
           <div>
-            <h1 className="text-4xl tagline-font text-secondary uppercase font-bold">
+            <h1 className="text-4xl tagline-font mt-4 text-secondary uppercase font-bold">
               Total
             </h1>
             <div className="flex items-center justify-between mt-5 tagline-font">

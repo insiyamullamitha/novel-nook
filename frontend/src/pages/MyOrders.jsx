@@ -41,12 +41,12 @@ export default function MyOrders({ user }) {
       <TagLineStrip className="shadow-xl" />
       <div className="tagline-font container mx-auto text-black px-8 mt-8">
         <div>
-          <h1 className="text-4xl uppercase tagline-font font-bold text-secondary">
+          <h1 className="text-4xl uppercase text-center tagline-font font-bold text-secondary">
             My Orders
           </h1>
           <div className="mb-16">
             {orders.length === 0 ? (
-              <p className="text-xl tagline-font mt-4">
+              <p className="text-xl tagline-font text-center mt-4">
                 You have no orders yet.
               </p>
             ) : (

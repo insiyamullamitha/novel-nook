@@ -12,7 +12,7 @@ export default function Contact({ user }) {
         </div>
       </div>
       <TagLineStrip className="shadow-xl" />
-      <div className="container mx-auto py-8 text-black">
+      <div className="container mx-auto py-8 mt-4 text-black">
         <h1 className="tagline-font font-bold text-4xl justify-center flex text-secondary mb-4 text-black uppercase">
           Contact Us
         </h1>

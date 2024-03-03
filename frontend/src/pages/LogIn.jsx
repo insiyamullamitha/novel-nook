@@ -7,13 +7,12 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../components/FirebaseApp";
 import { useState } from "react";
 import { getDoc, doc } from "firebase/firestore/lite";
-import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function LogIn({ user, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const getUserDataFromFirestore = async (uid, setUser) => {
     try {
@@ -26,14 +25,15 @@ export default function LogIn({ user, setUser }) {
           fullName: userData.fullName,
         });
       }
+      Navigate("/myprofile");
     } catch (error) {
-      console.error("Error getting user data from firestore", error);
+      toast.error("Something went wrong");
+      window.location.reload();
     }
   };
 
   const onLogin = (e) => {
     e.preventDefault();
-
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -45,14 +45,10 @@ export default function LogIn({ user, setUser }) {
           errorCode === "auth/wrong-password" ||
           errorCode === "auth/user-not-found"
         ) {
-          alert("The email or password is incorrect. Please try again.");
+          toast.error("The email or password is incorrect. Please try again.");
         }
       });
   };
-
-  if (user) {
-    return navigate("/profile");
-  }
 
   return (
     <>

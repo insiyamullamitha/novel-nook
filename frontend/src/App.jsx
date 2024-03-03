@@ -21,7 +21,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import Contact from "./pages/Contact";
 import { Toaster } from "react-hot-toast";
 
-function App() {
+export default function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ function App() {
             user && user.emailVerified ? (
               <Basket user={user} />
             ) : user ? (
-              <VerifyEmail user={user} setUser={setUser} />
+              <Navigate to="/verifyemail" />
             ) : (
               <Navigate to="/login" />
             )
@@ -81,7 +81,7 @@ function App() {
             user && user.emailVerified ? (
               <MyProfile user={user} setUser={setUser} />
             ) : user ? (
-              <VerifyEmail user={user} setUser={setUser} />
+              <Navigate to="/verifyemail" />
             ) : (
               <Navigate to="/login" />
             )
@@ -93,7 +93,7 @@ function App() {
             user && user.emailVerified ? (
               <MyOrders user={user} />
             ) : user ? (
-              <VerifyEmail user={user} setUser={setUser} />
+              <Navigate to="/verifyemail" />
             ) : (
               <Navigate to="/login" />
             )
@@ -105,13 +105,25 @@ function App() {
             user && user.emailVerified ? (
               <MyWishlist user={user} />
             ) : user ? (
-              <VerifyEmail user={user} setUser={setUser} />
+              <Navigate to="/verifyemail" />
             ) : (
               <Navigate to="/login" />
             )
           }
         />
         <Route path="/contact" element={<Contact user={user} />} />
+        <Route
+          path="/verifyemail"
+          element={
+            user && user.emailVerified ? (
+              <Navigate to="/myprofile" />
+            ) : user ? (
+              <VerifyEmail user={user} setUser={setUser} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
         <Route
           path="*"
           element={user ? <Home user={user} /> : <Navigate to="/login" />}
@@ -121,5 +133,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;
